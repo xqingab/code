@@ -1,0 +1,18 @@
+package com.hzg.boot.server.dubbo.impl;
+
+
+import com.alibaba.dubbo.config.annotation.Service;
+import com.hzg.boot.server.dubbo.EmployeeService;
+import com.hzg.boot.server.entity.Employee;
+
+//注册为 Dubbo 服务   此@Service有dubbo提供
+@Service(version="1.0.0")
+public class EmployeeServiceImpl implements EmployeeService {
+
+@Override
+public Employee queryEmployeeByName(String employeeName) {
+
+return new Employee(1,"上海","大城市");
+}
+
+}

@@ -1,0 +1,36 @@
+package com.hzg.boot.server.dubbo;
+import com.hzg.boot.server.entity.Employee;
+/**
+ * 员工服务层接口
+ * @author hzg1214
+ *
+ */
+public interface EmployeeService {
+/**
+* 根据员工姓名查询 
+* @param employeeName
+* @return
+*/
+Employee queryEmployeeByName(String employeeName);
+
+}
+
+<2>EmployeeServiceImpl
+
+package com.hzg.boot.server.dubbo.impl;
+
+import com.alibaba.dubbo.config.annotation.Service;
+import com.hzg.boot.server.dubbo.EmployeeService;
+import com.hzg.boot.server.entity.Employee;
+
+//注册为 Dubbo 服务   此@Service有dubbo提供
+@Service(version="1.0.0")
+public class EmployeeServiceImpl implements EmployeeService {
+
+@Override
+public Employee queryEmployeeByName(String employeeName) {
+
+return new Employee(1,"上海","大城市");
+}
+
+}

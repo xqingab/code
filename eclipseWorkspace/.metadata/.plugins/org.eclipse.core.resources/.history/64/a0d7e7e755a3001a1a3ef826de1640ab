@@ -1,0 +1,5 @@
+package com.hzg.boot.client.dubbo;
+
+public class EmployeeConsumerService {
+
+}

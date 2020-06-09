@@ -1,0 +1,5 @@
+package com.hzg.boot.server.dubbo;
+
+public class EmployeeService {
+
+}

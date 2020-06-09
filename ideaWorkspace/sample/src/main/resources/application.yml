@@ -1,0 +1,16 @@
+server:
+  port: 8080
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+#spring:
+#    datasource:
+#     username: test20200302
+#     password: 123456
+#     url: jdbc:mysql://localhost:3306/springBootTest?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+##     type: com.alibaba.druid.pool.DruidDataSource
+#     driver-class-name: com.mysql.jdbc.Driver
+
+# 自定义属性
+name: 李明
+age: 22
+sex: 男

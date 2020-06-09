@@ -1,0 +1,12 @@
+spring.dubbo.application.name=provider \u00A0
+spring.dubbo.registry.address=zookeeper://127.0.0.1:2181 \u00A0
+spring.dubbo.protocol.name=dubbo \u00A0
+spring.dubbo.protocol.port=20880\u00A0
+#dubbo \u8D44\u6E90\u626B\u63CF\u6587\u4EF6\u00A0
+spring.dubbo.scan=com.hzg.boot.server.dubbo\u00A0
+#\u65E5\u5FD7\u914D\u7F6E \u00A0 \u00A0 \u00A0 \u00A0 \u00A0dubbo\u5F3A\u5236\u5185\u7F6Elog4j \u00A0
+
+#logging.config=classpath:logback-boot.xml \u00A0
+\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014
+\u7248\u6743\u58F0\u660E\uFF1A\u672C\u6587\u4E3ACSDN\u535A\u4E3B\u300Chzg1214\u300D\u7684\u539F\u521B\u6587\u7AE0\uFF0C\u9075\u5FAACC 4.0 BY-SA\u7248\u6743\u534F\u8BAE\uFF0C\u8F6C\u8F7D\u8BF7\u9644\u4E0A\u539F\u6587\u51FA\u5904\u94FE\u63A5\u53CA\u672C\u58F0\u660E\u3002
+\u539F\u6587\u94FE\u63A5\uFF1Ahttps://blog.csdn.net/hzg1214/article/details/79992693

@@ -1,0 +1,9 @@
+spring.dubbo.application.name=provider
+spring.dubbo.registry.address=zookeeper://127.0.0.1:2181
+spring.dubbo.protocol.name=dubbo
+spring.dubbo.protocol.port=20880
+#dubbo \u8D44\u6E90\u626B\u63CF\u6587\u4EF6
+spring.dubbo.scan=com.hzg.boot.server.dubbo
+#\u65E5\u5FD7\u914D\u7F6E dubbo\u5F3A\u5236\u5185\u7F6Elog4j
+
+#logging.config=classpath:logback-boot.xml
