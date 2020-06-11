@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 定义一个数字类型的数组
+		var arr = [1,2,3,4,5];
+		// 把数组对象进行JSON串形式的转化，追加到id是before的元素中
+		$('#before').append(JSON.stringify(arr));
+		
+		var newArr = $.map(arr,function(value){
+			return value*5;
+		});
+		
+		$('#after').append(JSON.stringify(newArr));
+		$('#afterArr').append(JSON.stringify(arr));
+	});
+</script>
+</head>
+<body>
+<h2>map函数用于通过处理数组的元素，生成一个新的数组</h2>
+<p id="before">Before:</p>
+<p id="after">After:</p>
+<p id="afterArr">After Array:</p>
+</body>
+</html>

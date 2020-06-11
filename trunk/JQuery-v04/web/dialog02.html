@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<link rel="stylesheet" href="css/bootstrap.css" />
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var d = $('#save-dialog').dialog({
+			autoOpen: false,
+			height: 600,
+			weight: 400,
+			modal: true,
+			buttons:{
+				"保存":function(){
+					alert('保存成功');
+					$(this).dialog('close');
+				},
+				"取消":function(){
+					$(this).dialog('close');
+				}
+			},
+			close: function(){
+				$('form')[0].reset();
+			}
+		});
+		
+		$( "#birthday" ).datepicker({
+			dateFormat:'yy-mm-dd',
+			defaultDate:'2016-01-01',
+			changeYear:false,
+			changeMonth:true,
+			monthNamesShort:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",],
+			dayNamesMin:['一','二','三','四','五','六','日']
+		});
+		
+		$('button:first').click(function(){
+			d.dialog('open');
+		})
+	});
+</script>
+</head>
+<body>
+<button>添加新用户</button>
+<div id="save-dialog" title="新用户注册">
+	<p>所有数据都是必填项</p>
+	<form>
+		<fieldset>
+			<div class="form-group">
+				<label>姓名</label>
+				<input placeholder="姓名" />
+			</div>
+			<div class="form-group">
+				<label>密码</label>
+				<input placeholder="密码" />
+			</div>
+			<div class="form-group">
+				<label>确认密码</label>
+				<input placeholder="确认密码" />
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input placeholder="Email" />
+			</div>
+			<div class="form-group">
+				<label>生日</label>
+				<input id="birthday" placeholder="生日" />
+			</div>
+		</fieldset>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+p{
+	margin-top:1em;
+	border: 1px solid black;
+}
+</style>
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// remove是移除元素
+		// empty是清除元素中的内容
+		$('#remove').click(function(){
+			$(this).remove();
+		});
+		$('#remove-span').click(function(){
+			$(this).children('span').remove();
+		});
+		$('#empty').click(function(){
+			$(this).empty();
+		});
+	});
+</script>
+</head>
+<body>
+	<p id="remove">点击后删除</p>
+	<p id="remove-span">点击后只删除span元素<span>span内容</span></p>
+	<p id="empty">点击后内容被清除</p>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+div:first-of-type button.up{
+	visibility: hidden;
+}
+div:last-of-type button.down{
+	visibility: hidden;
+}
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.up').click(function(){
+			// 使用parent函数得到当前元素的父元素
+			var parent = $(this).parent();
+			// prev函数可以把元素向前移动
+			parent.insertBefore(parent.prev());
+		});
+		$('.down').click(function(){
+			var parent = $(this).parent();
+			// next函数可以把元素向后移动
+			parent.insertAfter(parent.next());
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>点击按钮，上下移动元素</h2>
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		第1个Div
+	</div>
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		第2个Div
+	</div>
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		第3个Div
+	</div>
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		第4个Div
+	</div>
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		第5个Div
+	</div>
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		第6个Div
+	</div>
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		第7个Div
+	</div>
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		第8个Div
+	</div>
+</body>
+</html>

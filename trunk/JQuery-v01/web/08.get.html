@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 获得当前页面中的所有p元素组成的一个数组
+		$('#get').click(function(){
+			alert('Get p = '+$('p').get());
+		});
+		
+		$('#to-array').click(function(){
+			alert('Get p = '+$('p').toArray());
+		});
+		
+		$('#make-array').click(function(){
+			alert('Get p = '+$.makeArray($('p')));
+		});
+		
+		// 因为$('p')[0]表示的是一个JS原生对象，不可以使用jQuery对象中定义的html()函数
+		$('#first').click(function(){
+			alert("Get first p HTML: "+$('p')[0].innerHTML);
+		});
+
+		$('#get-first').click(function(){
+			alert("Get first p HTML: "+$('p').get(0).innerHTML);
+		});
+
+		// 通过get函数获得数组中最后一个元素的内容，-1表示倒数第一个，-2表示倒数第二个
+		$('#get-last').click(function(){
+			alert("Get first p HTML: "+$('p').get(-1).innerHTML);
+		});
+	});
+</script>
+</head>
+<body>
+<h2>获得数组或其中的元素</h2>
+<p>First</p>
+<p>Second</p>
+<p>Third</p>
+
+<button id="get">Get</button>
+<button id="to-array">变为数组</button>
+<button id="make-array">生成数组</button>
+<button id="first">第一个元素</button>
+<button id="get-first">获得第一个元素</button>
+<button id="get-last">获得最后一个元素</button>
+</body>
+</html>

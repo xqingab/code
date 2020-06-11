@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<!-- 声明项目使用的是注解方式的Bean声明，从base-package属性所指定的包及其子包下扫描Spring可以识别的组件 -->
+	<!-- 如果有多个包需要被扫描到，可以使用逗号分隔 -->
+	<context:component-scan base-package="org.forten" />
+
+	<!-- 如果使用注解方式进行一个Bean的声明，则第一个类默认只能有一个Bean被生成 -->
+	<!-- 如果要再声明更多的Bean则需要通过XML方式进行配置 -->
+	<!-- 如果在Java类中使用注解方式进行了Bean的声明，同时在XML中使用相同的id又声明了这个Bean，则XML中声明的Bean会覆盖Java中的配置 -->
+	<!-- 但在XML配置文件中，不可以出现两个以上拥有相同id的Bean -->
+
+	<!-- 声明一个org.forten.sample.model.Car类型的Bean，其id是c1 -->
+	<bean id="c1" class="org.forten.sample.model.Car">
+		<!-- 通过property可以利用Bean的set方法来进行值或对象的依赖注入 -->
+		<!-- 如果值是基本数据类型（及其包装类对象）、字符串，则使用value进行注入 -->
+		<!-- 如果值是基本数据类型（及其包装类对象）、字符串以外的引用类型数据，则使用ref进行注入 -->
+		<property name="name" value="QQ" />
+		<property name="price" value="30000" />
+		<property name="speed" value="80" />
+	</bean>
+
+	<bean id="d1" class="org.forten.sample.model.Driver">
+		<property name="name" value="赵云" />
+		<property name="age" value="32" />
+		<property name="car" ref="c1" />
+	</bean>
+
+	<!-- 使用构造方法进行实例变量的注入，可以使用构造方法参数的名称、索引顺序和类型进行定位 -->
+	<!-- 如果值是基本数据类型（及其包装类对象）、字符串，则使用value进行注入 -->
+	<!-- 如果值是基本数据类型（及其包装类对象）、字符串以外的引用类型数据，则使用ref进行注入 -->
+	<!-- 使用构造方法进行依赖注入时，如果在类上同时使用了注解方式的注入，则会被注解注入的值覆盖 -->
+	<bean id="c2" class="org.forten.sample.model.Car">
+		<constructor-arg name="name" value="法拉利" />
+		<constructor-arg name="price" value="1500000" />
+		<constructor-arg name="speed" value="200" />
+	</bean>
+
+	<bean id="d2" class="org.forten.sample.model.Driver">
+		<constructor-arg name="name" value="吕布" />
+		<constructor-arg name="age" value="42" />
+		<constructor-arg name="car" ref="c2" />
+	</bean>
+</beans>

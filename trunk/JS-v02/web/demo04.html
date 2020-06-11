@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.error-msg{
+	font-size: 0.7em;
+	font-weight: bold;
+	color: #f66;
+	padding-left: 1.5em;
+}
+</style>
+<script type="text/javascript">
+	// var chils= s.childNodes;  //得到s的全部子节点
+	// var par=s.parentNode;   //得到s的父节点
+	// var ns=s.nextSibling;   //获得s的下一个兄弟节点
+	// var ps=s.previousSibling;  //得到s的上一个兄弟节点
+	// var fc=s.firstChild;   //获得s的第一个子节点
+	// var lc=s.lastChile;   //获得s的最后一个子节点
+	function requiredValue(e){
+		// 得到触发e这个事件的元素对象
+		var element = e.currentTarget;
+		// 得到对象的value值，并修剪前后空白
+		var v = element.value.trim();
+		
+		// 得到触发事件元素对象的下一个兄弟元素（input后的label元素对象）
+		// 对label元素设置已经操作过的标记
+		element.nextSibling.setAttribute("data-flag","true");
+		// 定义默认的格式错误消息
+		var msg = "请输入数据";
+		// 如果input元素设置了data-msg自定义属性，则使用此属性的消息作为错误消息
+		if(element.hasAttribute("data-msg")){
+			msg = element.getAttribute("data-msg");
+		}
+		
+		// 如果input取值为空则在input后的label元素内显示错误消息
+		// 否则把input后的label元素内的错误消息置空
+		if(v.length==0){
+			element.nextSibling.innerText = msg;
+		}else{
+			element.nextSibling.innerText = "";
+		}
+	}
+
+	function writeData(){
+		var allInput = document.querySelectorAll("input");
+		for(var i = 0; i < allInput.length; i++){
+			localStorage.setItem(allInput[i].name,allInput[i].value);
+		}
+	}
+	
+	function resetForm(){
+		var flag = document.querySelectorAll("[data-flag='true']");
+		// 把所有input的data-flag属性移除，即移除了所有input的操作过的标记
+		for(var i = 0;i < flag.length;i++){
+			flag[i].removeAttribute("data-flag");
+		}
+	}
+	
+	function valForm(){
+		// 以下第一个if块用于拦截初始加载页面时的提交
+		// 只有当被操作过的input数量与要被校验的元素数量相等时才可以提交
+		var flag = document.querySelectorAll("[data-flag='true']");
+		var err = document.querySelectorAll(".error-msg");
+		if(flag.length<err.length){
+			alert("请确认各项数据的输入格式正确！");
+			return false;
+		}
+		
+		// 遍历所有错误消息的label，判断每个label中的消息长度是否是0，只要有一个消息长度大于零，则不允许提交。
+		for(var i = 0;i < err.length;i++){
+			if(err[i].innerText.length>0){
+				alert("请确认各项数据的输入格式正确！");
+				return false;
+			}
+		}
+		// 向本地存储中写入除密码以外的数据
+		writeData();
+		// 提交数据
+		return true;
+	}
+</script>
+</head>
+<body>
+	<form id="regist-form" action="result.html" method="post">
+		<label>用户：</label><input type="text" id="username" name="username" data-msg="请输入用户名" /><label class="error-msg"></label><br> 
+		<label>密码：</label><input id="pwd" name="pwd" type="password" data-msg="请输入密码" /><label class="error-msg"></label><br>
+		<label>确认：</label><input id="pwd2" name="pwd2" type="password" data-msg="请输入确认密码" /><label class="error-msg"></label><br>
+		<label>电话：</label><input type="text" id="tel" name="tel" data-msg="请输入电话" /><label class="error-msg"></label><br>
+		<label>邮箱：</label><input type="text" id="email" name="email" data-msg="请输入电子邮箱" /><label class="error-msg"></label><br>
+		<button>注册</button>
+		<button type="reset">重置</button>
+	</form>
+	<script type="text/javascript">
+		var inputs = document.querySelectorAll("input");
+		for(var i = 0; i < inputs.length; i++){
+			inputs[i].oninput = requiredValue;
+			inputs[i].onblur = requiredValue;
+		}
+		document.forms['regist-form'].onsubmit = valForm;
+		document.forms['regist-form'].onreset = resetForm;
+		
+	</script>
+</body>
+</html>

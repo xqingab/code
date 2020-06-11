@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('div').has('em').css('background-color',"#f00");
+		$('strong').append(',is()='+$('strong').is('#select'));
+	});
+</script>
+</head>
+<body>
+	<h2>has用于选取元素</h2>
+	<h2>is用于检测元素</h2>
+	<div>
+		此文本是<span>正常的文本</span>
+	</div>
+	<div>
+		此文本的<em>背景</em>是红色的
+	</div>
+	<div>
+		此文本是<strong id="select">正常的文本</strong>
+	</div>
+</body>
+</html>

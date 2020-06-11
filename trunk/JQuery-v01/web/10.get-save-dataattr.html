@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#save').click(function(){
+			// data(attrName,attrValue)函数可以向元素中添加自定义属性（当元素中没有这个属性时）
+			// 自定义属性名前的data-应该省略
+			$('#save-data').data('myattr','some data');
+		});
+		
+		$('#show').click(function(){
+			// 如果使用data(attrName)函数，则可以读取到data-attrName的自定义属性值
+			alert($('#save-data').data('myattr'));
+		});
+		
+		$('#update').click(function(){
+			// data(attrName,attrValue)函数可以修改元素中自定义属性的值（当元素中有这个属性时）
+			$('#save-data').data('myattr','new data');
+		});
+		
+		$('#delete').click(function(){
+			// 通过removeData对自定义属性进行删除
+			$('#save-data').removeData('myattr');
+		});
+		
+		$('#show-empty').click(function(){
+			// 如果使用data函数获取的自定义属性不存在，则取值为undefined
+			alert("第二个p元素中的data-myattr属性的值是："+$('#empty-data').data('myattr'));
+		});
+	});
+</script>
+</head>
+<body>
+<button id="save">向第一个p元素中添加自定义属性数据</button>
+<button id="show">显示第一个p元素中的自定义属性数据</button>
+<button id="update">修改第一个p元素中的自定义属性数据</button>
+<button id="delete">删除第一个p元素中的自定义属性数据</button>
+<p id="save-data">第一段</p>
+<button id="show-empty">显示第二个p标签中的自定义属性数据</button>
+<p id="empty-data">第二段</p>
+</body>
+</html>

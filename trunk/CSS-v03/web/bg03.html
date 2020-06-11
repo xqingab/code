@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>背景图片的平铺方式</title>
+<style type="text/css">
+	div{
+		width: 50em;
+		height: 15em;
+		border: 3px solid #ccc;
+		margin-bottom: 3em;
+		background-image: url(images/bg.png);
+	}
+	
+	#d1{
+		/* 设置背景以x轴横向平铺一行 */
+		background-repeat: repeat-x;
+	}
+	#d2{
+		/* 设置背景以y轴纵向平铺一列 */
+		background-repeat: repeat-y;
+	}
+	#d3{
+		/* 设置背景不平铺，只显示一次 */
+		background-repeat: no-repeat;
+		/* 设置背景图片的位置：x y */
+		background-position: 2em 3em;
+	}
+	#d4{
+		background-repeat: no-repeat;
+		/* 重新定义背景图的大小 */
+		background-size: 5em 5em;
+		/* 背景图片横向居中 */
+		background-position-x: center;
+		/* 背景图片纵向居中 */
+		background-position-y: center;
+	}
+</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<div id="d2"></div>
+	<div id="d3"></div>
+	<div id="d4"></div>
+</body>
+</html>

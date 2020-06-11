@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function test1(){
+		var g = document.getElementById("gender").value;
+		var msgEle = document.getElementById("msg");
+		if(g=="M"){
+			msgEle.innerText = "先生";
+		}
+		if(g=="F"){
+			msgEle.innerText = "女士";
+		}
+	}
+	function test2(){
+		var g = document.getElementById("gender").value;
+		var msgEle = document.getElementById("msg");
+		if(g=="M"){
+			msgEle.innerText = "先生";
+		}else{
+			msgEle.innerText = "女士";
+		}
+	}
+	function test3(){
+		var g = document.getElementById("gender").value;
+		var msgEle = document.getElementById("msg");
+		if(g=="M"){
+			msgEle.innerText = "先生";
+		}else if(g=="F"){		
+			msgEle.innerText = "女士";
+		}else if(g=="U"){
+			msgEle.innerText = "你猜";
+		}else{
+			msgEle.innerText = "请输入正确的值";
+		}
+	}
+	function test4(){
+		var v = document.getElementById("xm").value;
+		if(v.length==0){
+			alert("请输入姓名");
+		}else{
+			alert("3Q");
+		}
+	}
+</script>
+</head>
+<body>
+<input id="xm" name="xm" placeholder="姓名" />
+<select id="gender" name="gender">
+	<option value="">==请选择性别==</option>
+	<option value="U">保密</option>
+	<option value="M">男</option>
+	<option value="F">女</option>
+</select>
+<button type="button" onclick="test3();">OK</button>
+<button type="button" onclick="test4();">校验是否输入了姓名</button>
+<br>
+<h2 id="msg"></h2>
+</body>
+</html>

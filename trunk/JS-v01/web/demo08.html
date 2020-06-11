@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function test() {
+		var w = document.getElementById("w").value;
+		if (w == 's') {
+			alert("去爬山");
+		} else if (w == "r") {
+			alert("去图书馆");
+		} else if (w == "snow") {
+			alert("去打雪仗");
+		} else {
+			alert("发呆");
+		}
+		alert("睡觉");
+	}
+</script>
+</head>
+<body>
+	<select id="w">
+		<option value="">天气预报</option>
+		<option value="s">晴</option>
+		<option value="r">雨</option>
+		<option value="snow">雪</option>
+	</select>
+	<button onclick="test();">OK</button>
+</body>
+</html>

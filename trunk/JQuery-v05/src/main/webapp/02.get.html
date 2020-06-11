@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('button').on('click',function(){
+			// 以HTTP的get方式进行请求
+			$.get('user/getOne.do',function(user){
+				$('#idVal').text(user.id);
+				$('#nameVal').text(user['name']);
+				$('#telVal').text(user.tel);
+				$('#birthdayVal').text(user.birthdayStr);
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<button>Get User Info</button>
+	<table border="1">
+		<tr>
+			<td>id</td>
+			<td id="idVal"></td>
+		</tr>
+		<tr>
+			<td>姓名</td>
+			<td id="nameVal"></td>
+		</tr>
+		<tr>
+			<td>电话</td>
+			<td id="telVal"></td>
+		</tr>
+		<tr>
+			<td>生日</td>
+			<td id="birthdayVal"></td>
+		</tr>
+	</table>
+</body>
+</html>

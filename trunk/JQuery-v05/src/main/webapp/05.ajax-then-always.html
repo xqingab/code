@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button').on('click',function(){
+			// ajax函数用于定义调用的ajax请求的参数设置，并发送
+			// ajax请求发送后会执行then函数
+			// 当ajax请求成功返回响应，则执行then函数的第一个参数引用的函数
+			// 当ajax请求失败，则执行then函数的第二个参数引用的函数
+			// 无论ajax请求成功还是失败，都会执行always函数
+			$.ajax({
+				url:'user/getOne.do',
+				dataType: 'json'
+			}).then(function(user){
+				$('#target').html("用户姓名："+user.name+"<br>用户的生日："+user.birthdayStr);
+			},function(){
+				$('#target').html("<h1>数据请求失败</h1>");
+			}).always(function(){
+				alert('请求已经发送');
+			});
+		});
+	});
+</script>
+</head>
+<body>
+<button>Get</button>
+<div id="target"></div>
+</body>
+</html>

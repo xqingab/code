@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 只要添加了属性名称，此属性就会生效的这种属性，应该使用prop
+		// 只有true和false两种取值的属性，应该使用prop
+		// 其它属性可以使用attr
+		// prop和attr如果有两个参数时是对属性的赋值
+		// prop和attr如果有一个参数时是对属性的读取
+		$('button:first').click(function(){
+			$('input').prop('type','checkbox');
+			$('label').attr('other','anything');
+			$('h2').html($('input').prop('type'));
+		});
+		$('button:last').click(function(){
+			$('input').prop('type','radio');
+			$('label').attr('other');
+			$('h2').html($('input').prop('type'));
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>把radio变为checkbox</h2>
+	<input type="radio" name="text" id="first"/>
+	<label for="first">First</label>
+	<input type="radio" name="text" id="second"/>
+	<label for="second">Second</label>
+	<input type="radio" name="text" id="third"/>
+	<label for="third">Third</label>
+	<br>
+	<button>开关</button><button>重置</button>
+</body>
+</html>

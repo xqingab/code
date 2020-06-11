@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// prepend,prependTo,append,appendTo是在选中的元素内部进行内容的添加
+		// before,insertBefore,after,insertAfter是在选中的元素外部进行内容的添加
+		$('#before').click(function(){
+			$('#target').before("<p>Before</p>");
+		});
+		$('#after').click(function(){
+			$('#target').after("<p>After</p>");
+		});
+		$('#ins-before').click(function(){
+			$("<p>Insert Before</p>").insertBefore('#target');
+		});
+		$('#ins-after').click(function(){
+			$("<p>Insert After</p>").insertAfter('#target');
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>点击按钮看效果</h2>
+	<div id="target" style="border: 1px solid black;">
+		<button id="before">before()</button><br>
+		<button id="after">after()</button><br>
+		<button id="ins-before">insertBefore()</button><br>
+		<button id="ins-after">insertAfter()</button>
+	</div>
+</body>
+</html>

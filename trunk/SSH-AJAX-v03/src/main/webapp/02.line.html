@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="salary-chart" style="height: 600px;width: 1500px;"></div>
+	
+	<button type="button">生成图表</button>
+	<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+	<script type="text/javascript">
+		var months;
+		var salarys;
+		$(function(){
+			$('button:first').on('click',function(){
+				$.ajax({
+					url:'getChart.do',
+					type:'GET',
+					contentType:'application/json'
+				}).then(function(ro){
+					months = ro.months;
+					salarys = ro.salaryList;
+					var lineChart = echarts.init(document.getElementById('salary-chart'));
+					var option = {
+						    tooltip : {
+						        trigger: 'axis'
+						    },
+						    legend: {
+						        data:months
+						    },
+						    grid: {
+						        left: '3%',
+						        right: '4%',
+						        bottom: '3%',
+						        containLabel: true
+						    },
+						    toolbox: {
+						        feature: {
+						            saveAsImage: {},
+						            magicType:{
+						            	show:true,
+						            	type:['bar','line','stack', 'tiled']	
+						            }
+						        }
+						    },
+						    xAxis : [
+						        {
+						            type : 'category',
+						            boundaryGap : false,
+						            data : months
+						        }
+						    ],
+						    yAxis : [
+						        {
+						            type : 'value',
+						            min:9000,
+						            max:18000
+						        }
+						    ],
+						    series : [
+						        {
+						            name:'someone',
+						            type:'line',
+						            stack: '总工资',
+						            data:salarys
+						        },{
+						        	name:'someone2',
+						            type:'line',
+						            stack: '总工资2',
+						            data:[10700,11000,13200,13600,10000,11000,12000,10900,10500,10200,13000,15000]
+						        }
+						    ]
+						};
+					lineChart.setOption(option);
+				},function(){
+					alert('error');
+				});
+			});
+		});
+	</script>
+</body>
+</html>

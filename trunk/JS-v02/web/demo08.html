@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function writeData(){
+		var xm = document.getElementById("xm").value;
+		var age = document.getElementById("age").value;
+		var str = "你好："+xm+" 今年你"+age+"岁";
+		// 向本地存储中以键值对的形式写入数据
+		// 键：指的是数据的名称，便于以后对数据的再次获取
+		// 值：指要存储的数据本身
+		localStorage.setItem("hello",str);
+		alert("数据保存完成");
+	}
+	
+	function read(){
+		// 通过键来获取所对应的值
+		var str = localStorage.getItem("hello");
+		var div = document.querySelector("div");
+		div.innerText = str;
+	}
+	
+	function clean(){
+		// 用于清除本地存储中的全部数据
+		localStorage.clear();
+		var div = document.querySelector("div");
+		div.innerText = "";
+		alert("数据清除完成");
+	}
+</script>
+</head>
+<body>
+	<input id="xm" name="name" placeholder="姓名" />
+	<br>
+	<input id="age" name="age" placeholder="年龄" />
+	<br>
+	<button type="button" onclick="writeData();">写入</button>
+	<button type="button" onclick="read();">读取</button>
+	<button type="button" onclick="clean();">清除</button>
+	<div></div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- 声明AOP使用aspectj的自动代理机制实现 -->
+	<aop:aspectj-autoproxy />
+	<!-- 声明Spring IoC上下文通过annotation方式配置 -->
+	<context:annotation-config />
+	<!-- 声明从org.forten包开始扫描Spring容器中的组件 -->
+	<context:component-scan base-package="org.forten" />
+	<!-- 定位Spring上下文中要引入的属性文件 -->
+	<context:property-placeholder location="classpath*:/system/*.properties" />
+
+	<!-- 数据库连接池配置 -->
+	<bean id="dataSource" destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 初始化连接:连接池启动时创建的初始化连接数量,1.2版本后支持 -->
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<!-- 最大活动连接:连接池在同一时间能够分配的最大活动连接的数量, 如果设置为非正数则表示不限制 -->
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<!-- 最大空闲连接:连接池中容许保持空闲状态的最大连接数量,超过的空闲连接将被释放,如果设置为负数表示不限制 -->
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<!-- 最小空闲连接:连接池中容许保持空闲状态的最小连接数量,低于这个数量将创建新的连接,如果设置为0则不创建 -->
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<!-- 最大等待时间:当没有可用连接时,连接池等待连接被归还的最大时间(以毫秒计数),超过时间则抛出异常,如果设置为-1表示无限等待 -->
+		<property name="maxWait" value="${jdbc.maxWait}" />
+	</bean>
+
+	<!-- 配置Spring包装的Hibernate SessionFactory对象 -->
+	<!-- 如果是Hibernate3，此处的class应该成org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!-- 注入数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置项目中实体所在的包名，spring会在符合以下包命名规则的包中扫描所有实体类 -->
+		<property name="packagesToScan">
+			<list>
+				<value>org.forten.**.entity</value>
+			</list>
+		</property>
+		<!-- Hibernate属性配置 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 定义事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 声明式事务的配置 -->
+	<!-- 配置事务传播特性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="do*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="REQUIRED" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置参与事务的类 -->
+	<aop:config>
+		<!-- 第一个*代表任意返回类型 -->
+		<!-- 第二个*代表任意包名称开始 -->
+		<!-- 第二个*后的..代表任意层包名称 -->
+		<!-- bo后的第一个*代表任意类名称 -->
+		<!-- bo后的第二个*代表任意方法名称 -->
+		<!-- (..)中的..代表方法的任意参数 -->
+		<!-- 完整的意义是：项目中无论包的层次如何，只要含名为bo的包，则bo包下的所有类的所有方法都会被定义为切入点 -->
+		<aop:pointcut id="txPointcut" expression="execution(* *..bo.*.*(..))" />
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
+	</aop:config>
+</beans>

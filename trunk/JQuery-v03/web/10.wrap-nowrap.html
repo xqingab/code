@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div.wrapper{
+	border: 1px solid red;
+}
+</style>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button').click(function(){
+			$('p').wrap('<div class="wrapper" />');
+		});
+		$('p').click(function(){
+			$(this).unwrap('<div class="wrapper" />');
+		})
+	});
+</script>
+</head>
+<body>
+	<h2>包装和解包</h2>
+	<p>第一个段落</p>
+	<p>第二个段落</p>
+	<button>包装</button>
+</body>
+</html>

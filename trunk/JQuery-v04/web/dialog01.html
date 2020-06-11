@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript">
+	var msgDialog;
+	$(function(){
+		$( "button" ).on('click',function(){
+			msgDialog.dialog('open');
+		});
+		
+		msgDialog = $('#dialog').dialog({
+		    autoOpen: false,
+		    height: 300,
+		    width: 350,
+		    modal: true,
+		    buttons: {
+		    	"取消": function(){
+		    		msgDialog.dialog('close');
+		    	},
+		        "确定": function() {
+		    		msgDialog.dialog('close');
+		    	}
+		    }
+		});
+	});
+	
+</script>
+</head>
+<body>
+<div id="dialog" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+<button>Open</button>
+</body>
+</html>

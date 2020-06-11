@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 加载JQuery的核心脚本 -->
+<!-- 要先加载JQuery的核心脚本，再加载或编写其它依赖于它的脚本程序 -->
+<!-- <script type="text/javascript" src="js/jquery-2.2.0.js"></script> -->
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+// 把调用的主要JS代码绑定到document的ready函数上
+// 能够确保在代码执行之前把页面中的所有元素加载完毕
+// $符号是默认的jQuery对象的别名
+$(function(){
+	// 把页面中所有P标签元素的字体变量粗体，颜色变成蓝色，字号变成5em
+	// 因为css函数返回的是jQuery对象，所以可以使用函数的连缀形式进行多重调用（绝大部分jQuery对象的函数都有此特点）
+	$('p').css("font-weight","bold").css("color","#00f").css("font-size","5em");
+	// 选中class属性为myclass的元素，将它们的内容文本修改为"新文本"
+	$('.myclass').text("新文本");
+	// 选中id是myid的元素，为其绑定单击事件，点击这个元素时，会弹出一个alert警告框，显示被点击元素的文本内容
+	$('#myid').click(function(){alert($(this).text());});
+});
+</script>
+</head>
+<body>
+<p>注意P标签中内容的样式</p>
+<p class="myclass">你看我不到</p>
+<p id="myid">点朕</p>
+</body>
+</html>

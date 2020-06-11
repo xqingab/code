@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="do" />
+	
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="index" class="org.forten.sample.action.IndexAction">
+			<result name="success">/index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="hello" namespace="/hello" extends="struts-default">
+		<action name="helloWorld" class="org.forten.sample.action.HelloAction" method="helloWorld">
+			<result name="success">/hello/hello-world.jsp</result>
+		</action>
+		<action name="helloChina" class="org.forten.sample.action.HelloAction" method="helloChina">
+			<result name="success">/hello/hello-china.jsp</result>
+		</action>
+	</package>
+</struts>

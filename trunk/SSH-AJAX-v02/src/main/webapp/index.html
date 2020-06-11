@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<style type="text/css">
+body{
+	margin-top: 5em;
+}
+#fast-edit-btn-div{
+	width:12em;
+	height:3.5em;
+	text-align: center;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 0px 0px 15px 15px;
+}
+</style>
+</head>
+<body>
+<!-- 头部导航条 -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div id="navbar-header">
+		<a class="navbar-brand" href="#">图书信息管理</a>
+	</div>
+</nav>
+<!-- 页面主体部分 -->
+<div class="container">
+	<!-- 操作工具条 -->
+	<div class="btn-group">
+		<button id="save-btn" class="btn btn-primary">
+			<span class="glyphicon glyphicon-plus" title="添加"></span>
+		</button>
+		<button id="update-btn" class="btn btn-warning" disabled="disabled">
+			<span class="glyphicon glyphicon-edit" title="修改"></span>
+		</button>
+		<button id="delete-btn" class="btn btn-danger" disabled="disabled">
+			<span class="glyphicon glyphicon-trash" title="删除"></span>
+		</button>
+		<a class="btn btn-success" href="book/export.do">
+			<span class="glyphicon glyphicon-save-file" title="导出数据"></span>
+		</a>
+	</div>
+	<!-- 用于查询书籍信息的表单 -->
+	<form id="list-form"></form>
+	<!-- 查询表单的第一部分，用于输入查询条件 -->
+	<div class="navbar-form pull-left">
+		<div class="form-group">
+			<input id="search-name" placeholder="图书名称" class="form-control" form="list-form" />
+		</div>
+		<div class="form-group">
+			<input id="search-author" placeholder="作者" class="form-control" form="list-form" />
+		</div>
+		<div class="form-group">
+			<select id="search-type" class="form-control" form="list-form">
+				<option value="">请选择</option>
+				<option value="1">文学</option>
+				<option value="2">艺术</option>
+				<option value="3">计算机</option>
+				<option value="4">生活</option>
+				<option value="5">工具</option>
+			</select>
+		</div>
+		<input type="hidden" id="orderField" value="id" form="list-form" />
+		<input type="hidden" id="orderType" value="DESC" form="list-form" />
+		<button class="btn btn-info" id="search-btn" type="button">查询</button>
+		<button class="btn btn-default" type="reset" form="list-form">重置</button>
+	</div>
+	
+	<!-- 数据table -->
+	<table id="data-table" class="table table-hover table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>书籍名称</th>
+				<th>作者</th>
+				<th>类型</th>
+				<th>出版时间 <a data-order-field="pubDate" data-order-type="ASC" href="#" class="order-btn"><span class="glyphicon glyphicon-resize-vertical"></span></a></th>
+				<th>价格 <a data-order-field="price" data-order-type="ASC" href="#" class="order-btn"><span class="glyphicon glyphicon-resize-vertical"></span></a></th>
+				<th>折扣</th>
+				<th>折扣价 <a data-order-field="price*discount" data-order-type="ASC" href="#" class="order-btn"><span class="glyphicon glyphicon-resize-vertical"></span></a></th>
+				<th><input type="checkbox" id="select-all" /></th>
+			</tr>
+		</thead>
+		<tbody id="main-data">
+			<tr>
+				<td colspan="9" class="text-center"><img src="images/loading.gif" /></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="9">
+					<span class="pull-left col-lg-4">
+						第<span id="page-pageno"></span>页/共<span id="page-total-page"></span>页 第<span id="page-firstno"></span>条~第<span id="page-lastno"></span>条 共<span id="page-total-record"></span>条数据
+					</span>
+					<span class="pull-right col-lg-8">
+						<span class="form-inline">
+							<button id="page-jump-btn" type="button" class="btn pull-right col-lg-1">Go</button>
+							<select id="pageSize" class="col-lg-2 form-control pull-right" form="list-form">
+								<option value="2">2</option>
+								<option value="10">10</option>
+								<option value="20">20</option>
+							</select>
+							<input id="pageNo" value="1" class="col-lg-1 form-control col-lg-offset-1 pull-right" form="list-form" />
+						</span>
+						<span id="to-last-btn" class="btn btn-default pull-right col-lg-1">尾页</span>
+						<span id="to-next-btn" class="btn btn-default pull-right col-lg-1">下一页</span>
+						<span id="to-pre-btn" class="btn btn-default pull-right col-lg-1">上一页</span>
+						<span id="to-first-btn" class="btn btn-default pull-right col-lg-1">首页</span>
+					</span>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+<!-- 页脚 -->
+<footer class="navbar-fixed-bottom">
+	<p>&copy; Tsinghua ITC 2016</p>
+</footer>
+
+<!-- <button id="save-btn" type="button" class="btn">添加</button> -->
+<div id="save-dialog" title="添加图书信息" class="container">
+	<form id="save-form" class="form-horizontal">
+		<div class="form-group">
+			<label class="col-lg-3 control-label">书籍名称</label>
+			<div class="col-lg-9">
+				<input id="name" placeholder="书籍名称" class="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">作者</label>
+			<div class="col-lg-9">
+				<input id="author" placeholder="作者" class="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">分类</label>
+			<div class="col-lg-9">
+				<select id="type" class="form-control">
+					<option value="">请选择</option>
+					<option value="1">文学</option>
+					<option value="2">艺术</option>
+					<option value="3">计算机</option>
+					<option value="4">生活</option>
+					<option value="5">工具</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">出版日期</label>
+			<div class="col-lg-9">
+				<input id="pubDate" placeholder="出版日期" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">价格</label>
+			<div class="col-lg-9">
+				<input id="price" placeholder="价格" type="number" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">折扣</label>
+			<div class="col-lg-9">
+				<input id="discount" type="range" min="1" max="10" step="0.1" value="8" /><span id="discount-value">8</span>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="update-dialog" title="修改图书信息" class="container">
+	<form id="update-form" class="form-horizontal">
+		<input id="u-id" type="hidden" />
+		<div class="form-group">
+			<label class="col-lg-3 control-label">书籍名称</label>
+			<div class="col-lg-9">
+				<input id="u-name" placeholder="书籍名称" class="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">作者</label>
+			<div class="col-lg-9">
+				<input id="u-author" placeholder="作者" class="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">分类</label>
+			<div class="col-lg-9">
+				<select id="u-type" class="form-control">
+					<option value="1">文学</option>
+					<option value="2">艺术</option>
+					<option value="3">计算机</option>
+					<option value="4">生活</option>
+					<option value="5">工具</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">出版日期</label>
+			<div class="col-lg-9">
+				<input id="u-pubDate" placeholder="出版日期" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">价格</label>
+			<div class="col-lg-9">
+				<input id="u-price" placeholder="价格" type="number" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">折扣</label>
+			<div class="col-lg-9">
+				<input id="u-discount" type="range" min="1" max="10" step="0.1" value="8" /><span id="u-discount-value">8</span>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="fast-edit-btn-div" hidden="true">
+	<button id="fast-edit-btn">更新</button>
+	<button id="fast-cancel-btn">取消</button>
+</div>
+
+<!-- 删除确认对话框 -->
+<div id="delete-dialog" title="确认">
+	<p>是否确定要删除这批数据？</p>
+</div>
+<script type="text/javascript">
+	var totalPage = 0;
+	var editElement;
+	var editOldValue;
+	var editCurrentValue;
+	$(function(){
+		list();
+		$('#search-btn').add('#page-jump-btn').on('click',list);
+		$('#discount').on('mousemove keydown',showDiscount);
+		$('#u-discount').on('mousemove keydown',showUpdateDiscount);
+		$('#save-btn').on('click',function(){
+			saveDialog.dialog('open');
+		});
+		$('#pubDate').add('#u-pubDate').datepicker({
+			dateFormat:'yy-mm-dd',
+			monthNames:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+			dayNamesMin:['一','二','三','四','五','六','日']
+		});
+		/* $('#u-pubDate').datepicker({
+			dateFormat:'yy-mm-dd',
+			monthNames:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+			dayNamesMin:['一','二','三','四','五','六','日']
+		}); */
+		
+		$('#to-last-btn').on('click',function(){
+			$('#pageNo').prop('value',totalPage);
+			list();
+		});
+		$('#to-first-btn').on('click',function(){
+			$('#pageNo').prop('value',1);
+			list();
+		});
+		$('#to-next-btn').on('click',function(){
+			var pNo = parseInt($('#pageNo').prop('value'))+1;
+			if(pNo<=totalPage){
+				$('#pageNo').prop('value',pNo);
+				list();
+			}
+		});
+		$('#to-pre-btn').on('click',function(){
+			var pNo = parseInt($('#pageNo').prop('value'))-1;
+			if(pNo>0){
+				$('#pageNo').prop('value',pNo);
+				list();
+			}
+		});
+		
+		$('#select-all').on('change',function(){
+			$('.id-check').prop('checked',$(this).prop('checked'));
+			$('#delete-btn').prop('disabled',!$(this).prop('checked'));
+			var countChecked=$('.id-check:checked').length;
+			if(countChecked==1){
+				$('#update-btn').prop('disabled',false);
+			}else{
+				$('#update-btn').prop('disabled',true);
+			}
+		});
+		
+		$('#main-data').on('change','.id-check',changeOptBtnStatus);
+		
+		$('#delete-btn').on('click',function(){
+			deleteDialog.dialog('open');
+		});
+		
+		$('#update-btn').on('click',function(){
+			var id = $('.id-check:checked').first().val();
+			$('#u-id').val(id);
+			var dataTds = $('input[value="'+id+'"]').parent().parent().children('td');
+			$('#u-name').val($(dataTds[1]).text());
+			$('#u-author').val($(dataTds[2]).text());
+			$('#u-type').val($(dataTds[3]).data('type'));
+			$('#u-pubDate').val($(dataTds[4]).text());
+			$('#u-price').val($(dataTds[5]).text());
+			$('#u-discount').val($(dataTds[6]).text());
+			$('#u-discount-value').text($(dataTds[6]).text());
+			updateDialog.dialog('open');
+		});
+		
+		$('.order-btn').on('click',function(){
+			// 读取a元素上的两个排序相关的自定义属性
+			var fieldName = $(this).data('order-field');
+			var fieldType = $(this).data('order-type');
+			// 把与排序相关的自定义属性赋值给排序的input
+			$('#orderField').val(fieldName);
+			$('#orderType').val(fieldType);
+			
+			// 把除当前被单击的字段外的其它可排序表头中的图标变为上下双箭头
+			$('.order-btn').not(this).children('span').removeAttr('class').addClass('glyphicon glyphicon-resize-vertical');
+			
+			// 移除当前被单击的排序图标的上下双箭头
+			$(this).children('span').removeClass('glyphicon glyphicon-resize-vertical');
+			
+			// 按ASC或DESC的排序类型值进行图标的切换
+			if($(this).data('order-type')=='ASC'){
+				$(this).children('span').removeClass('glyphicon glyphicon-sort-by-attributes-alt');
+				$(this).children('span').addClass('glyphicon glyphicon-sort-by-attributes');
+			}else{
+				$(this).children('span').removeClass('glyphicon glyphicon-sort-by-attributes');
+				$(this).children('span').addClass('glyphicon glyphicon-sort-by-attributes-alt');
+			}
+			// 为下次点击此图标的动作修改排序类型值
+			$(this).data('order-type',fieldType=='ASC'?'DESC':'ASC');
+			// 查询
+			list();
+		});
+		
+		$('#main-data').on('click','.editable-td',function(e){
+			editElement = $(this);
+			editOldValue = editElement.text();
+			
+			$(this).prop('contenteditable',true);
+			// 获得鼠标点击时所在页面的坐标
+			var x = e.pageX;
+			var y = e.pageY;
+			$('#fast-edit-btn-div').css({
+				'position':'absolute',
+				'top':y+22,
+				'left':x,
+				'z-index':1
+			}).show();
+		});
+		
+		$('#fast-cancel-btn').on('click',function(){
+			editElement.text(editOldValue);
+			$(this).parent().hide();
+		});
+		
+		$('#fast-edit-btn').on('click',function(){
+			editCurrentValue = editElement.text();
+			var bookId = editElement.parent().children('td:last').children('input:first').val();
+			var dataJson = '{"id":'+bookId+',"name":"'+editCurrentValue+'"}';
+			
+			$.ajax({
+				url:'book/editName.do',
+				type:'POST',
+				dataType:'json',
+				contentType:'application/json',
+				data:dataJson
+			}).done(function(){
+				alert('success');
+				list();
+			}).fail(function(){
+				alert('Error');
+			}).always(function(){
+				$('#fast-edit-btn-div').hide();
+			});
+		});
+		
+		$('#main-data').on('dblclick','td:not(:has(:checkbox))',function(){
+			$(this).parent('tr').find(':checkbox').prop('checked',!$(this).parent('tr').find(':checkbox').prop('checked'));
+			changeOptBtnStatus();
+		})
+	});
+	
+	var changeOptBtnStatus = function(){
+		var countChecked=$('.id-check:checked').length;
+		if(countChecked==1){
+			$('#update-btn').add('#delete-btn').prop('disabled',false);
+		}else if(countChecked>1){
+			$('#update-btn').prop('disabled',true);
+		}else{
+			$('#update-btn').add('#delete-btn').prop('disabled',true);
+		}
+	};
+	
+	var showDiscount = function(){
+		var v = $('#discount').prop('value');
+		$('#discount-value').html(v);
+	}
+	var showUpdateDiscount = function(){
+		var v = $('#u-discount').prop('value');
+		$('#u-discount-value').html(v);
+	}
+	
+	var list = function(){
+		var searchObj = {};
+		searchObj.name = $('#search-name').prop('value');// searchObj['name'] = $('#search-name').prop('value');
+		searchObj.author = $('#search-author').prop('value');
+		searchObj.type = $('#search-type').prop('value');
+		searchObj.pageNo = $('#pageNo').prop('value');
+		searchObj.pageSize = $('#pageSize').prop('value');
+		searchObj.orderField = $('#orderField').prop('value');
+		searchObj.orderType = $('#orderType').prop('value');
+		
+		var jsonStr = JSON.stringify(searchObj);
+		$.ajax({
+			url:'book/list.do',
+			type:'POST',
+			dataType:'json',
+			contentType:'application/json',
+			data:jsonStr
+		}).then(function(ro){
+			$('#main-data').empty();
+			if(ro.emptyData){
+				$('#main-data').html("<tr><td colspan='9'><h2>没有符合查询条件的数据</h2></td></tr>");
+				$('tfoot').hide();
+			}else{
+				$.each(ro.dataList,function(index,vo){
+					var dataTr = '<tr><td>'+(index+1)+'</td><td class="editable-td">'+vo.name+'</td><td>'+vo.author+'</td><td data-type="'+vo.type+'">'+vo.typeStr+'</td><td>'+vo.pubDateStr+'</td><td>'+vo.price+'</td><td>'+vo.discount+'</td><td>'+vo.finalPrice+'</td><td><input type="checkbox" name="bookId" class="id-check" value="'+vo.id+'" /></td></tr>';
+					$('#main-data').append(dataTr);
+				});
+				$('#page-pageno').text(ro.page.pageNo);
+				$('#page-total-page').text(ro.page.totalPage);
+				$('#page-firstno').text(ro.page.firstResultNum+1);
+				$('#page-lastno').text(ro.page.lastResultNum);
+				$('#page-total-record').text(ro.page.totalQuantity);
+				$('tfoot').show();
+				totalPage = ro.page.totalPage;
+			}
+		},function(){
+			
+		});
+	}
+	
+	var update = function(){
+		var book = {};
+		var id = $("#u-id").prop('value');
+		var name = $("#u-name").prop('value');
+		var author = $("#u-author").prop('value');
+		var type = $("#u-type").prop('value');
+		var pubDate = $("#u-pubDate").prop('value');
+		pubDate = pubDate.replace('年','-');
+		pubDate = pubDate.replace('月','-');
+		pubDate = pubDate.replace('日','');
+		alert(pubDate);
+		var price = $("#u-price").prop('value');
+		var discount = $("#u-discount").prop('value');
+		book.id=id;
+		book.name = name;
+		book.author = author;
+		book.type = type;
+		book.pubDate = pubDate;
+		book.price = price;
+		book.discount = discount;
+		var bookJson = JSON.stringify(book);
+		
+		$.ajax({
+			url:'book/update.do',
+			type:"POST",
+			dataType:"json",
+			contentType:"application/json",
+			data:bookJson
+		}).then(function(vo){
+			alert(vo.message);
+			// $('#update-form')[0].reset();
+			list();
+		},function(){
+			alert("error");
+		}).always(function(){
+			updateDialog.dialog('close');
+		});
+	};
+	
+	var updateDialog = $('#update-dialog').dialog({
+		autoOpen:false,
+		width:400,
+		height:450,
+		modal:true,
+		buttons:{
+			"修改":update,
+			"取消":function(){
+				updateDialog.dialog('close');
+			}
+		}
+	});
+	
+	var save = function(){
+		var book = {};
+		var name = $("#name").prop('value');
+		var author = $("#author").prop('value');
+		var type = $("#type").prop('value');
+		var pubDate = $("#pubDate").prop('value');
+		var price = $("#price").prop('value');
+		var discount = $("#discount").prop('value');
+		book.name = name;
+		book.author = author;
+		book.type = type;
+		book.pubDate = pubDate;
+		book.price = price;
+		book.discount = discount;
+		var bookJson = JSON.stringify(book);
+		
+		$.ajax({
+			url:"book/save.do",
+			type:"POST",
+			dataType:"json",
+			contentType:"application/json",
+			data:bookJson
+		}).then(function(vo){
+			alert(vo.message);
+			$('#save-form')[0].reset();
+		},function(){
+			alert("error");
+		}).always(function(){
+			saveDialog.dialog('close');
+		});
+	};
+	
+	var saveDialog = $("#save-dialog").dialog({
+		autoOpen:false,
+		width:400,
+		height:450,
+		modal:true,
+		buttons:{
+			'保存':save,
+			'取消':function(){
+				$('#save-form')[0].reset();
+				saveDialog.dialog('close');
+			}
+		}
+	});
+	
+	var del = function(){
+		var countChecked = $('.id-check:checked').length;
+		var ids = "[";
+		$('.id-check:checked').each(function(index,element){
+			ids = ids+$(element).prop('value');
+			if(index<(countChecked-1)){
+				ids = ids+",";
+			}
+		});
+		ids=ids+"]";
+		
+		$.ajax({
+			url:'book/delete.do',
+			type:'POST',
+			dataType:'json',
+			contentType:'application/json',
+			data:ids
+		}).done(function(vo){
+			alert(vo.message);
+			list();
+		}).fail(function(){
+			alert('error');
+		}).always(function(){
+			deleteDialog.dialog('close');
+		});
+	}
+	
+	var deleteDialog = $('#delete-dialog').dialog({
+		autoOpen:false,
+		width:450,
+		height:220,
+		modal:true,
+		buttons:{
+			"确定":del,
+			"取消":function(){
+				deleteDialog.dialog('close');
+			}
+		}
+	});
+</script>
+</body>
+</html>

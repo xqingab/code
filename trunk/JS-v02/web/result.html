@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function show() {
+		var name = localStorage.getItem("username");
+		var tel = localStorage.getItem("tel");
+		var email = localStorage.getItem("email");
+
+		document.getElementById("d1").innerHTML = "<h1>" + name + "</h1><h2>"
+				+ tel + "</h2><h3>" + email + "</h3>";
+	}
+</script>
+</head>
+<body onload="show();">
+	<div id="d1"></div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 用于文件上传的form一定要有enctype="multipart/form-data"的属性设置，且method一定是post -->
+	<form action="save.do" method="POST" enctype="multipart/form-data">
+		标题：<input name="title" /><br>
+		地址：<input name="address" /><br>
+		价格：<input name="price" /><br>
+		电话：<input name="tel" /><br>
+		类型：<input name="type" /><br>
+		<!-- 文件上传的input的name属性取值，要与action方法中的MultipartFile类型的参数名一致 -->
+		照片：<input name="img" type="file" /><br>
+		<button>保存</button>
+	</form>
+</body>
+</html>

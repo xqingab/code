@@ -1,0 +1,48 @@
+﻿
+/* nav 顶部导航菜单 */
+.navWrap { height:59px; _display:inline; position:relative; right:5px; background:#86007c; float:right; zoom:1; }
+
+.nav { margin:22px 5px 0; clear:both; zoom:1; position:relative; z-index:9999; }
+.nav li { float:left; display:inline; position:relative; }
+
+
+/* bt 导航菜单选项部分 */
+.bt { margin:0 5px; _overflow:hidden; text-align:center; }
+.bt a { height:36px; line-height:36px; color:#fff; font-size:14px; font-weight:bold; padding:0 15px 0 8px; display:inline-block; text-decoration:none; border-left:#86007c 1px solid; border-top:#86007c 1px solid; border-right:#86007c 1px solid; }
+.bt a:hover { color:#86007c; background:#fff; border-left:#9b9b9b 1px solid; border-top:#9b9b9b 1px solid; border-right:#9b9b9b 1px solid; text-decoration:none; }
+
+.nav_jt,.nav_jt a { background:url(../images/nav_jt.gif) 96% center no-repeat; }
+.nav_jt:hover,.nav_jt a:hover { background:#fff url(../images/nav_jt.gif) 96% center no-repeat!important; }
+
+/* nr 导航下拉菜单内容部分 */
+.nr{ display:none; color:#454545; background:#fff url(../images/nav_bg.gif) left bottom repeat-x; position:absolute; z-index:999; *width:200px; min-width:200px; text-align:center; top:36px; left:5px; border-left:#9b9b9b 1px solid; border-bottom:#9b9b9b 1px solid; border-right:#9b9b9b 1px solid; _overflow:hidden;  line-height: 28px; font-size:12px; font-weight:normal; clear:both; overflow:hidden; }
+
+.nr ol { margin:15px auto; border-right:#d2d0d2 1px solid; }
+.nr ol p { _height:30px; _line-height:30px; margin:0 5px; text-align:left; white-space: nowrap;}
+.nr ol p:hover { background:#ece6ed!important; cursor:pointer; }
+.nr ol p a { color:#65455d!important; text-decoration:none; margin-left:5px; }
+.nr ol p a:hover { background:#ece6ed!important; text-decoration:none; }
+
+
+
+
+
+/* menu 二级页面左侧菜单区域 */
+.menu { width:170px; border-color:#a13d97 #c3c3c3 #c3c3c3 #c3c3c3; border-style:solid; border-width:5px 1px 1px 1px; 1px solid; float:left; overflow:hidden; zoom:1; }
+
+.menu ul { overflow:hidden; clear:both; zoom:1; text-align:left; }
+.menu h3 { margin-top:12px; height:35px; line-height:35px; border-bottom:#d9d9d9 1px solid; color:#272727; font-weight:normal; }
+.menu h3 span { margin-left:22px; }
+.menu ul li { border-bottom:#d9d9d9 1px solid; }
+.menu ul li a { width:170px; height:35px; line-height:35px; display:block; color:#272727; text-decoration:none; }
+.menu ul li a:hover { background:url(../images/m_hover.gif) no-repeat; color:#fff; text-decoration:none; }
+.menu ul li span { margin-left:22px; }
+
+
+.menu_active { width:170px; height:35px; line-height:35px; display:block; background:url(../images/m_hover.gif) no-repeat; color:#fff!important; }
+
+
+
+
+
+

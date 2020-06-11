@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>规定非中日韩文本的换行规则</title>
+<style type="text/css">
+	td{
+		width: 200px;
+	}
+	#t1{
+		/* 当到达边界时，会拆分单词，把单词的两部分分别显示当前行和下一行上 */
+		word-break: break-all;
+	}
+	#t2{
+		/* 当到达边界时，下一个单词在下一行显示 */
+		word-break:normal;
+	}
+	#t3{
+		/* 只能在半角空格或连字符处换行 */
+		word-break:keep-all;
+	}
+</style>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td id="t1">The Apache Syncope team is pleased to announce the
+		release of Syncope 1.2.6.Apache Syncope is an Open Source system for
+		managing digital identitiesin enterprise environments, implemented in
+		JEE technology.</td>
+		</tr>
+		<tr>
+			<td id="t2">The Apache Syncope team is pleased to announce the
+		release of Syncope 1.2.6.Apache Syncope is an Open Source system for
+		managing digital identitiesin enterprise environments, implemented in
+		JEE technology.</td>
+		</tr>
+		<tr>
+			<td id="t3">The Apache Syncope team-is-pleased to announce the
+		release of Syncope 1.2.6.Apache Syncope is an Open Source system for
+		managing digital identitiesin enterprise environments, implemented in
+		JEE technology.</td>
+		</tr>
+	</table>
+</body>
+</html>

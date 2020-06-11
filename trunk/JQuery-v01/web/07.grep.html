@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// each函数通常用于遍历数组元素，对原始数组中的元素进行操作
+		// map函数通常用于返回一个按自定义逻辑对原始数组元素进行修改后的数组，原始数组中的元素不变
+		// grep函数通常用于从一个原始数组中选取符合条件的元素，组成一个新的数组
+
+		// 定义一个由十二个月份名称组成的数组
+		var allArr = [
+			'Januray',
+			'Februaly',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
+		];
+		
+		// 使用grep函数过滤出所有月份名称中包含r的元素
+		var rArr = $.grep(allArr,function(value,index){
+			// indexOf函数可以返回参数字符串在大字符串中的出现位置，如果没有出现则返回-1
+			return value.indexOf('r')>=0;
+		});
+		
+		// join函数用于把一个数组中的元素连接成一个字符串，每个元素之间用join的参数字符串分隔
+		$('#all').html(allArr.join('<br>'));
+		$('#r').html(rArr.join('<br>'));
+	});
+</script>
+</head>
+<body>
+	<h2>全部月份</h2>
+	<p id="all"></p>
+	<h2>包含字母r的月份</h2>
+	<p id="r"></p>
+</body>
+</html>

@@ -1,0 +1,82 @@
+﻿/* index.css */
+
+
+
+/*----- header -----*/
+.headerWrap { width:980px; height:117px; margin:0 auto; background:url(../images/banner.jpg) no-repeat; clear:both; zoom:1; }
+
+
+
+/*----- content -----*/
+.content { width:978px; background:#fff; margin:0 auto 40px; border:#c3c3c3 1px solid; overflow:hidden; clear:both; zoom:1; }
+
+
+
+
+
+
+/* 通用标题及更多 */
+
+.f_purple { color:#8d0f84!important; } /* 标题文字紫色 */
+.f_gray { color:#2a2a2a!important; }   /* 标题文字灰色 */
+
+
+/* s_txt */
+.s_txt { width:100px; height:16px; line-height:16px; text-indent:2px; *margin-top:0; }
+
+
+/* btn */
+.btn,.btn a { height:22px; line-height:22px; background:url(../images/r_btn_l_bg.gif) no-repeat; display:inline-block; }
+.btn span,.btn a span { margin-left:3px; padding:0 10px; height:22px; line-height:22px; text-align:center; background:url(../images/r_btn_r_bg.gif) right top no-repeat; display:inline-block; cursor:pointer; text-decoration:none; color:#095088; overflow:hidden; }
+.btn:hover,.btn a:hover { height:22px; line-height:22px; background:url(../images/r_btn_l_bg_h.gif) no-repeat; display:inline-block; clear:both; text-decoration:none; }
+.btn span:hover,.btn a:hover span { margin-left:3px; padding:0 10px; height:22px; line-height:22px; text-align:center; background:url(../images/r_btn_r_bg_h.gif) right top no-repeat; display:inline-block; cursor:pointer; text-decoration:none; color:#a2410a; }
+
+
+
+
+
+/* rc_info */
+.rc_info { margin:0 auto; overflow:hidden; zoom:1; clear:both; }
+.rc_info h3 { height:31px; line-height:31px; text-align:left; background:url(../images/zbt_bg.gif) repeat-x; text-align:left; color:#fff; font-weight:bold; clear:both; font-size:14px; }
+.r_title_ico { width:28px; height:31px; display:block; background:url(../images/r_title_ico.gif) no-repeat; margin:0 10px; float:left; }
+
+
+
+/* rc_fbt */
+.rc_fbt { margin:0 auto; height:37px; line-height:37px; background:url(../images/fbt_bg.gif) repeat-x; border-bottom:#bfbfbf 1px solid; overflow:hidden; zoom:1; clear:both; margin:0 1px; }
+
+.rc_fbt ul { float:left; overflow:hidden; zoom:1; }
+.rc_fbt ul li { float:left; padding:0 10px; display:inline; color:#333; }
+.rc_fbt ul li span { color:#a14009; }
+
+.rc_fbt p { line-height:37px; margin:0 10px; }
+.re_fbt_line { width:2px; height:14px; background:url(../images/fbt_line.gif) no-repeat; display:block; margin-top:12px; }
+
+
+
+/* rc_tab01 */
+.rc_tab01 { width:98%; border-collapse:collapse; margin:10px auto; }
+.rc_tab01 tr:hover { background:#fbf2ed; }
+.rc_tab01 tr th { height:25px; line-height:25px; text-align:left; color:#1b67a3; font-weight:bold; background:#e6f0fa; border-top:#1967a5 1px solid; border-right:#1967a5 1px solid; border-bottom:#1967a5 2px solid; padding-left:5px; }
+.rc_tab01 tr td { height:25px; line-height:25px; text-align:left; color:#000; padding-left:5px; border-right:#d3d7d8 1px solid; border-bottom:#d3d7d8 1px solid; }
+
+.rc_cr { border-right:none!important; }
+.rc_trb td { border-bottom:#1967a5 1px solid!important; }
+
+
+
+/* rc_tab03 */
+.rc_tab03 { width:98%; border-collapse:collapse; margin:10px auto; border-top:#1967a5 2px solid; }
+.rc_tab03 tr:hover { background:#fbf2ed; }
+.rc_tab03 tr th { height:25px; line-height:25px; text-align:right; padding-right:5px; color:#1b67a3; font-weight:bold; background:#e6f0fa; padding-left:5px; vertical-align:top; border-right:#d3d7d8 1px solid; border-bottom:#d3d7d8 1px solid; }
+.rc_tab03 tr td { height:25px; line-height:25px; text-align:left; color:#000; padding-left:5px; border-right:#d3d7d8 1px solid; border-bottom:#d3d7d8 1px solid; }
+
+.rc_tab03 tr td input { width:90%; }
+
+
+
+/*----- footer -----*/
+.footer { width:980px; height:34px; line-height:34px; margin:0 auto; background:url(../images/footer_bg.jpg) no-repeat; overflow:hidden; clear:both; zoom:1; }
+
+.copyright { float:left; color:#fff; text-align:left; margin-left:15px; display:inline; }
+.f_logo { float:right; color:#ff0; text-align:right; margin-right:15px; width:400px; height:40px; background:url(../images/footer_logo.gif) no-repeat; }

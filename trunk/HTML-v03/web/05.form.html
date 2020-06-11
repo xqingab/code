@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="#" method="post">
+		<select name="jg">
+			<option value="">===请选择===</option>
+			<option value="1">北京</option>
+			<option value="2">天津</option>
+			<option value="3">上海</option>
+			<option value="4" selected="selected">重庆</option>
+			<option value="5">河北</option>
+			<option value="6">河南</option>
+		</select>
+		<br>
+		<select name="jg" multiple="multiple">
+			<option value="">===请选择===</option>
+			<option value="1">北京</option>
+			<option value="2">天津</option>
+			<option value="3">上海</option>
+			<option value="4" selected="selected">重庆</option>
+			<option value="5">河北</option>
+			<option value="6">河南</option>
+		</select>
+		<br>
+		<input name="jg" list="jg-list" />
+	</form>
+	<datalist id="jg-list">
+		<option>北京</option>
+		<option>天津</option>
+		<option>上海</option>
+		<option>重庆</option>
+		<option>河北</option>
+		<option>河南</option>
+	</datalist>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function add(){
+		// document.getElementById(id)函数：通过元素id值得到元素DOM对象
+		var xElement = document.getElementById("x");
+		var yElement = document.getElementById("y");
+		// 通过“元素对象.属性名”可以得到某个元素的相应属性值（类型一般是字符串）
+		var xStr = xElement.value;
+		var yStr = yElement.value;
+		// 通过parseInt(str)可以把str中的字符串值转型成为10进制整数
+		var x = parseInt(xStr);
+		var y = parseInt(yStr);
+		
+		// 得到id是"sum"的那个span元素
+		var resultElement = document.getElementById("sum");
+		// 运算x+y的结果，赋给变量result
+		var result = x+y;
+		// 把result变量作为span元素的内容添加到文档中
+		resultElement.innerHTML = "<span style='color:red;font-size:3em;'>"+result+"</span>";
+	}
+	
+	function add2(){
+		var x = parseInt(document.getElementById("x").value);
+		var y = parseInt(document.getElementById("y").value);
+		
+		document.getElementById("sum").innerHTML = (x+y);
+	}
+</script>
+</head>
+<body>
+	<input id="x" />+<input id="y" /><button type="button" onclick="add();">=</button><span id="sum"></span>	
+</body>
+</html>

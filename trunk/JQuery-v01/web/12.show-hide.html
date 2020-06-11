@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button:first').click(function(){
+			$('div').show(2000,'linear');
+		})
+		$('button:last').click(function(){
+			$('div').hide(2000,'swing');
+		})
+	});
+</script>
+</head>
+<body>
+	<div>
+		<article>
+			<h3>山居秋暝</h3>
+			<section>
+				空山新雨后，天气晚来秋。<br>
+				明月松间照，清泉石上流。<br>
+				竹喧归浣女，莲动下渔舟。<br>
+				随意春芳歇，王孙自可留。
+			</section>
+		</article>
+	</div>
+	<button>显示</button>
+	<button>隐藏</button>
+</body>
+</html>

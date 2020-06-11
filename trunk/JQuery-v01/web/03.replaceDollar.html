@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 通过以下函数，可以把$符号与jQuery对象的绑定解除
+		// 通常用于多个JS框架并存的项目中
+		$.noConflict();
+		
+		// 当$符号与jQuery对象解除绑定后，可以使用$做为其它用途
+		// 如下代码，会把一个函数的定义赋给$，$此时就表示这个弹出对话框的函数了
+		$ = function(name){
+			alert('Hello '+name);
+		}
+		// 以下语句无效
+		// $('span').click(function(){alert(111);});
+		// 可以直接使用jQuery对象来操作以前的$所表示的功能
+		// jQuery('span').click(function(){alert(222);});
+		
+		// 可以自定义jQuery对象的别名
+		var jq = jQuery;
+		jq('span').click(function(){alert(333);});
+	});
+</script>
+</head>
+<body>
+	<span>点朕</span>
+</body>
+</html>

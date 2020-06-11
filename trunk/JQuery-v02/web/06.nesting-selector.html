@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(':not(:has(em))').css({'background-color':'#00f','color':'#fff'});
+	});
+</script>
+</head>
+<body>
+	<div>这应该是蓝色的<span>背景</span></div>
+	<div>
+		这部分除了包含在em和strong中的内容以外的文本是不被修饰的。
+		<em>这里是em</em>，
+		<strong>这里是strong</strong>。
+	</div>
+	<div>这应该是蓝色的<strong>背景</strong></div>
+</body>
+</html>

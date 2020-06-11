@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url:'user/error500.do',
+			dataType: 'json'
+		}).done(function(user){
+			$('#target').html("用户姓名："+user.name+"<br>用户的生日："+user.birthdayStr);
+		}).fail(function(jqXhr,status,errorMsg){
+			if(jqXhr.status==500){
+				$('#target').html("<h1>服务器内部错误</h1>");
+			}else if(jqXhr.status==404){
+				$('#target').html("<h1>请求的资源不存在</h1>");
+			}else{
+				$('#target').html("<h1>系统异常，请联系管理员。</h1>");
+			}
+		}).always(function(){
+			alert('请求已经发送');
+		});
+	});
+</script>
+</head>
+<body>
+<button>Get</button>
+<div id="target"></div>
+</body>
+</html>

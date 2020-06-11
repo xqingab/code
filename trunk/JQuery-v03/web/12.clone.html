@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button:first').click(function(){
+			var divArr = $('div','#target');
+			if(divArr.length>=5){
+				alert("添加的元素不能多于5个");
+			}else{
+				$('#temp').clone().appendTo('#target');
+			}
+		});
+		$('button:last').click(function(){
+			$('#target>div:last').remove();
+		});
+	});
+</script>
+</head>
+<body>
+	<button>add</button><button>remove</button>
+	<div id="temp">
+		<input name="opts" placeholder="Option" value="1000" /><br>
+	</div>
+	<div id="target"></div>
+</body>
+</html>

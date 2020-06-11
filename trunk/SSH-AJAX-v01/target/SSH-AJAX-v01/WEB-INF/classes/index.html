@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<style type="text/css">
+body{
+	padding-top: 5em;
+}
+
+#save-form{
+	margin-top: 5em;
+}
+</style>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript">
+	$(function(){
+		list();
+		$('#save-btn').on('click',save);
+		$('#notebook-div').on('click','.update-btn',showUpdateVo);
+		$('#notebook-div').on('click','.delete-btn',function(){
+			// 把删除<a>元素中的自定义属性data-id的值取到，并分配给id是del-id的span元素的data-id属性
+			$('#del-id').data("id",$(this).data("id"));
+			deleteDialog.dialog('open');
+		});
+		$('#update-btn').on('click',update);
+	});
+</script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Notebook</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">首页</a></li>
+            <li><a href="#about">关于</a></li>
+            <li><a href="#contact">联系方式</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    
+    <div class="container">
+    	<div class="col-lg-8 col-lg-offset-2" id="notebook-div">
+    		<div id="load-div" class="text-center">
+    			<img src="images/loading.gif" />
+    		</div>
+    	</div>
+		<div class="col-lg-8 col-lg-offset-2">
+			<form id="save-form" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">标题</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="title" name="title"
+							placeholder="留言标题">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">留言人</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="username" name="username"
+							placeholder="留言人">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">留言内容</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" id="contentText" name="contentText" rows="5" cols="50"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button id="save-btn" type="button" class="btn btn-default">发表留言</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<span id="del-id" data-id=""></span>
+	<div id="update-dialog" title="修改留言">
+		<form id="update-form" class="form-horizontal">
+			<input name="id" id="id" type="hidden" />
+			<div class="form-group">
+				<label class="col-sm-2 control-label">标题</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="title" name="title"
+						placeholder="留言标题">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">留言人</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="username"
+						name="username" placeholder="留言人">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword3" class="col-sm-2 control-label">留言内容</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" id="contentText" name="contentText"
+						rows="5" cols="50"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button id="update-btn" type="button" class="btn btn-default">修改</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="delete-dialog" title="警告">
+		<p>是否要删除留言？</p>
+	</div>
+	
+	<div id="msg-dialog" title="信息">
+		<p></p>
+	</div>
+	<script type="text/javascript">
+		// 定义消息对话框对象
+		var msgDialog = $('#msg-dialog').dialog({
+			autoOpen:false
+		});
+
+		// 更新数据表单的对话框对象
+		var updateDialog = $('#update-dialog').dialog({
+			autoOpen:false,
+			width:480,
+			height:370
+		});
+
+		// 更新数据功能的函数
+		var update = function(){
+			// 准备一个要被提交的JSON对象
+			var jsonData = {};
+			// 遍历表单中的控件，把用户输入的数据封装成一个jsonData对象
+			$.each($('#update-form').serializeArray(),function(index,obj){
+				jsonData[obj.name]=obj.value;
+			});
+			// 把以上封装好的对象变为JSON字符串形式
+			var jsonStr = JSON.stringify(jsonData);
+
+			// 发送更新请求
+			$.ajax({
+				url:"notebook/update.do",
+				type:"POST",
+				contentType:"application/json",
+				dataType:"json",
+				data:jsonStr
+			}).then(function(msgVo){
+				$('#msg-dialog>p').text(msgVo.msg);
+				msgDialog.dialog('open');
+				list();
+			},function(){
+				alert("error");
+			}).always(function(){
+				updateDialog.dialog('close');
+			});
+		}
+
+		// 用于更新数据表单中的数据回显
+		var showUpdateVo = function(){
+			// 从被点击的<a>元素上取得名为data-id的用户自定义属性值
+			var id = $(this).data('id');
+			// 发送请求
+			$.ajax({
+				url:"notebook/gotoUpdate.do?id="+id,
+				type:"GET",
+				dataType:'json'
+			}).then(function(vo){
+				// 把取来的数据分别回显到表单中相应的控件上
+				$('#title','#update-form').attr('value',vo.title);
+				$('#id','#update-form').attr('value',vo.id);
+				$('#username','#update-form').attr('value',vo.username);
+				$('#contentText','#update-form').text(vo.contentText);
+				updateDialog.dialog('open');
+			},function(){
+				alert('error');
+			});
+		}
+
+
+		// 保存功能函数
+		var save = function(){
+			var jsonData = {};
+			// 遍历表单中的控件，把用户输入的数据封装成一个jsonData对象
+			$.each($('#save-form').serializeArray(),function(index,obj){
+				jsonData[obj.name]=obj.value;
+			});
+			// 把以上封装好的对象变为JSON字符串形式
+			var jsonStr = JSON.stringify(jsonData);
+
+			// 调用后台资源
+			$.ajax({
+				url:"notebook/save.do",
+				type:"POST",
+				contentType:"application/json",
+				dataType:"json",
+				data:jsonStr
+			}).then(function(vo){
+				$('#msg-dialog>p').text(vo.msg);
+				msgDialog.dialog('open');
+				list();
+			},function(){
+				$('#msg-dialog>p').text("留言失败");
+				msgDialog.dialog('open');
+			})
+		};
+
+		// 删除功能函数
+		var del = function(){
+			// 从id是del-id的span元素的用户自定义属性data-id中得到留言的id值
+			var id = $("#del-id").data("id");
+			// 如果id不是空串会发送删除请求
+			if(id!="") {
+				$.ajax({
+					url: "notebook/delete.do?id=" + id,
+					type: "GET",
+					dataType: "json"
+				}).then(function (vo) {
+					$('#msg-dialog>p').text(vo.msg);
+					msgDialog.dialog('open');
+					list();
+				}, function () {
+					$('#msg-dialog>p').text("删除失败");
+					msgDialog.dialog('open');
+				}).always(function(){
+					$("#del-id").data("id","");
+					deleteDialog.dialog('close');
+				});
+			}
+		}
+
+		// 用于数据加载的功能函数
+		var list = function(){
+			$.ajax({
+				url:"notebook/list.do",
+				type:"GET",
+				dataType:"json"
+			}).then(
+				function(nbs){
+					$('#notebook-div').empty();
+					$.each(nbs,function(index,nb){
+						var nbHtml = "<div id='nb"+nb.id+"'><h2>"+nb.title+"</h2><p>"+nb.createTimeStr+" by <strong>"+nb.username+"</strong></p><p>"+nb.contentText+"</p><p><a data-id='"+nb.id+"' class='btn btn-xs update-btn'>修改</a><a data-id='"+nb.id+"' class='btn btn-xs delete-btn'>删除</a></p></div><hr>";
+						$('#notebook-div').append(nbHtml);
+					});
+				},function(){
+					alert('error');
+				}
+			);
+		}
+
+		// 准备删除确认对话框对象
+		var deleteDialog = $('#delete-dialog').dialog({
+			autoOpen:false,
+			buttons:{
+				"确定":del,
+				"取消":function(){
+					deleteDialog.dialog('close');
+				}
+			}
+		});
+	</script>
+</body>
+</html>

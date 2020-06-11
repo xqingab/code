@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<style type="text/css">
+.navbar-brand {
+	font-family: 微软雅黑;
+	font-size: 1.6em;
+}
+
+.jumbotron {
+	font-family: 华文新魏;
+	margin-top: 5em;
+}
+
+.jumbotron>p {
+	font-size: 2em;
+	text-align: center;
+}
+
+.table {
+	box-shadow: 2px 3px 3px 2px #ccc;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #fc9;
+}
+
+.table-hover>tbody>tr:hover {
+	background-color: #f96;
+}
+
+.mastfoot {
+	background-color: #333;
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}
+
+.inner {
+	padding: 30px;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">三国武将人事管理系统</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">首页</a></li>
+					<li><a href="#about">关于我们</a></li>
+					<li><a href="#contact">联系方式</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">系统管理 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">参数设置</a></li>
+							<li><a href="#">邮箱管理</a></li>
+							<li role="separator" class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">退出系统</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="jumbotron">
+			<h1>临江仙</h1>
+			<p>
+				滚滚长江东逝水，浪花淘尽英雄。是非成败转头空。青山依旧在，几度夕阳红。 <br>
+				白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢。古今多少事，都付笑谈中。
+			</p>
+		</div>
+		<div class="row">
+			<div class="col-lg-7">
+				<table class="table table-striped table-condensed table-hover">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>姓名</th>
+							<th>阵营</th>
+							<th>统御</th>
+							<th>武力</th>
+							<th>智力</th>
+							<th>政治</th>
+							<th>魅力</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>曹操</td>
+							<td>魏</td>
+							<td>90</td>
+							<td>76</td>
+							<td>96</td>
+							<td>95</td>
+							<td>92</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>关羽</td>
+							<td>汉</td>
+							<td>97</td>
+							<td>97</td>
+							<td>70</td>
+							<td>75</td>
+							<td>90</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>刘备</td>
+							<td>汉</td>
+							<td>68</td>
+							<td>52</td>
+							<td>64</td>
+							<td>83</td>
+							<td>97</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>周瑜</td>
+							<td>吴</td>
+							<td>89</td>
+							<td>67</td>
+							<td>96</td>
+							<td>90</td>
+							<td>91</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>貂蝉</td>
+							<td>其它</td>
+							<td>12</td>
+							<td>5</td>
+							<td>82</td>
+							<td>63</td>
+							<td>99</td>
+						</tr>
+						<tr>
+							<td>6</td>
+							<td>张飞</td>
+							<td>汉</td>
+							<td>88</td>
+							<td>98</td>
+							<td>53</td>
+							<td>32</td>
+							<td>65</td>
+						</tr>
+						<tr>
+							<td>7</td>
+							<td>张辽</td>
+							<td>魏</td>
+							<td>92</td>
+							<td>90</td>
+							<td>87</td>
+							<td>63</td>
+							<td>90</td>
+						</tr>
+						<tr>
+							<td>8</td>
+							<td>典韦</td>
+							<td>魏</td>
+							<td>80</td>
+							<td>99</td>
+							<td>52</td>
+							<td>15</td>
+							<td>48</td>
+						</tr>
+						<tr>
+							<td>9</td>
+							<td>徐晃</td>
+							<td>魏</td>
+							<td>86</td>
+							<td>87</td>
+							<td>68</td>
+							<td>56</td>
+							<td>78</td>
+						</tr>
+						<tr>
+							<td>10</td>
+							<td>孙权</td>
+							<td>吴</td>
+							<td>80</td>
+							<td>78</td>
+							<td>82</td>
+							<td>92</td>
+							<td>88</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-div col-lg-4 col-lg-offset-1">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">姓名</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" placeholder="姓名" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">阵营</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" placeholder="阵营" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">统御</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" placeholder="统御"
+								min="1" max="100" value="50" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">武力</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" placeholder="武力"
+								min="1" max="100" value="50" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">智力</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" placeholder="智力"
+								min="1" max="100" value="50" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">政治</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" placeholder="政治"
+								min="1" max="100" value="50" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">魅力</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" placeholder="魅力"
+								min="1" max="100" value="50" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="text-center">
+							<button type="submit" class="btn btn-success">保存</button>
+							<button type="reset" class="btn btn-warning">重置</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="mastfoot">
+		<div class="inner">
+			<p>
+				Cover template for <a href="http://getbootstrap.com">Bootstrap</a>,
+				by <a href="https://twitter.com/mdo">@mdo</a>.
+			</p>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+</html>
+
+
+

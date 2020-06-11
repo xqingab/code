@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div.wrapper{
+	border: 1px solid red;
+}
+div.outer{
+	border: 5px double green;
+}
+</style>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('p.first').wrapInner("<div class='wrapper' />");
+		$('button:first').click(function(){
+			$('p').wrapAll('<div class="outer" />');
+		});
+		$('button:last').click(function(){
+			$('p').unwrap('<div class="outer" />');
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>wrapInner()</h2>
+	<p class="first" style="border: 3px solid blue;">第一段</p>
+	<p>第二段</p>
+	<button>包装全部</button>
+	<button>解包全部</button>
+</body>
+</html>

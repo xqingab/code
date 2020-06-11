@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+p.init{
+	color: white;
+	background-color: blue;
+}
+p.change{
+	font-weight: bold;
+}
+p.big{
+	font-size: 3em;
+}
+</style>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('p').addClass('init').click(function(){
+			$(this).addClass('change big');
+		}).dblclick(function(){
+			$(this).removeClass('change big');
+		});
+	});
+</script>
+</head>
+<body>
+	<p>点击这里，字体变化</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function validateForm(){
+		// 取用户名对应的input元素对象
+		var nameInput = document.getElementById("username");
+		// 取用户输入的用户名字符串
+		var name = nameInput.value;
+		// 如果用户没有输入用户名，则进入if块
+		if(name.length==0){
+			// 弹出警告框
+			alert("请输入用户名");
+			// 返回false，并结束函数的执行
+			return false;
+		}
+		
+		// 取用户输入的密码
+		var pwd = document.getElementById("pwd").value;
+		// 如果用户没有输入密码，则进入if块
+		if(pwd.length==0){
+			alert("请输入密码");
+			return false;
+		}
+		// 如果以上if块都没有进入，则返回true，并结束函数的执行
+		return true;
+	}
+</script>
+</head>
+<body>
+	<!-- 当表单提交前会触发onsubmit事件，在事件中调用了validateForm()函数，如果函数返回的是true则进行提交，如果函数返回的是false则不提交 -->
+	<form id="login-form" action="login.do" method="post" onsubmit="return validateForm();">
+		<label>用户：</label><input id="username" name="username" /><br>
+		<label>密码：</label><input id="pwd" name="pwd" type="password" /><br>
+		<button>登录</button>
+	</form>
+</body>
+</html>

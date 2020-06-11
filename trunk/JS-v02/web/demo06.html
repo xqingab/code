@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div{
+		border: 1px solid black;
+	}
+	.d1{
+		width: 100px;
+		height: 100px;
+	}
+	.d2{
+		width: 200px;
+		height: 200px;
+	}
+	.d3{
+		width: 300px;
+		height: 300px;
+	}
+	.d4{
+		width: 400px;
+		height: 400px;
+	}
+	.d5{
+		width: 500px;
+		height: 500px;
+	}
+</style>
+<script type="text/javascript">
+	function modifyBox(cn){
+		var div = document.querySelector("div");
+		div.className = cn;
+	}
+</script>
+</head>
+<body>
+	<div class="d1"></div>
+	<button onclick="modifyBox('d1');">100*100</button>
+	<button onclick="modifyBox('d2');">200*200</button>
+	<button onclick="modifyBox('d3');">300*300</button>
+	<button onclick="modifyBox('d4');">400*400</button>
+	<button onclick="modifyBox('d5');">500*500</button>
+</body>
+</html>

@@ -1,0 +1,17 @@
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:48 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8080-exec-1 429
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:58 +0800] "GET /index.html HTTP/1.1" 200 9411 http-bio-8080-exec-3 66
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:58 +0800] "GET /images/loading.gif HTTP/1.1" 200 248391 http-bio-8080-exec-9 171
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:58 +0800] "GET /css/jquery-ui.css HTTP/1.1" 200 35280 http-bio-8080-exec-4 211
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:58 +0800] "GET /js/jquery-ui.js HTTP/1.1" 200 470591 http-bio-8080-exec-7 234
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:58 +0800] "GET /js/bootstrap.js HTTP/1.1" 200 68890 http-bio-8080-exec-8 233
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:58 +0800] "GET /css/bootstrap.css HTTP/1.1" 200 147430 http-bio-8080-exec-5 259
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:58 +0800] "GET /js/jquery-2.2.0.js HTTP/1.1" 200 258388 http-bio-8080-exec-6 277
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:59 +0800] "GET /css/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png HTTP/1.1" 200 332 http-bio-8080-exec-6 36
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:47:59 +0800] "GET /css/images/ui-icons_72a7cf_256x240.png HTTP/1.1" 200 4549 http-bio-8080-exec-5 43
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:48:02 +0800] "GET /notebook/list.do HTTP/1.1" 200 588 http-bio-8080-exec-5 3268
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:48:22 +0800] "GET /notebook/gotoUpdate.do?id=4 HTTP/1.1" 200 82 http-bio-8080-exec-3 1117
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:48:22 +0800] "GET /css/images/ui-bg_highlight-soft_100_deedf7_1x100.png HTTP/1.1" 200 387 http-bio-8080-exec-3 52
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:48:43 +0800] "GET /notebook/delete.do?id=4 HTTP/1.1" 200 39 http-bio-8080-exec-3 429
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:48:43 +0800] "GET /notebook/list.do HTTP/1.1" 200 444 http-bio-8080-exec-3 14
+0:0:0:0:0:0:0:1 - - [10/May/2016:22:48:47 +0800] "GET /notebook/gotoUpdate.do?id=3 HTTP/1.1" 200 82 http-bio-8080-exec-3 13
+0:0:0:0:0:0:0:1 - - [10/May/2016:23:06:49 +0800] "GET /notebook/gotoUpdate.do?id=3 HTTP/1.1" 200 82 http-bio-8080-exec-5 27

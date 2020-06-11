@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url:'user/timeout.do',
+			dataType: 'json',
+			timeout: 2000
+		}).done(function(user){
+			$('#target').html("用户姓名："+user.name+"<br>用户的生日："+user.birthdayStr);
+		}).fail(function(jqXhr,status,errorMsg){
+			$('#target').html("<h1>请求超时</h1>");
+		}).always(function(){
+			alert('请求已经发送');
+		});
+	});
+</script>
+</head>
+<body>
+<button>Get</button>
+<div id="target"></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(":text").css('border-color','#00f');
+		$(":button").css('border-color','#00f');
+		$(":radio").attr('checked',true);
+		$("input[value='T']").attr('checked',true);
+		$("input[name]").css({'background-color':'#f00','width':'350px'});
+	});
+</script>
+</head>
+<body>
+	<form>
+		<input name="mytext1" id="mytext1" value="" /><br>
+		<input name="mytext2" id="mytext2" value="" /><br>
+		<input type="radio" name="myradio" id="myradio" value="0" /><br>
+		<input type="checkbox" name="mybox" id="mybox" value="T" /><br>
+		<input type="button" id="mybtn" value="Button" />
+	</form>
+</body>
+</html>

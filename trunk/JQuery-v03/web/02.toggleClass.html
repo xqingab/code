@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.big{
+	font-size: 3em;
+}
+.c{
+	color: red;
+}
+div{
+	width: 30em;
+	border: 3px double #ccc;
+}
+</style>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button').click(function(){
+			$('div').toggleClass('big c');
+		});
+	});
+</script>
+</head>
+<body>
+	<div>
+		<article>
+			<h3>山居秋暝</h3>
+			<section>
+				空山新雨后，天气晚来秋。<br>
+				明月松间照，清泉石上流。<br>
+				竹喧归浣女，莲动下渔舟。<br>
+				随意春芳歇，王孙自可留。
+			</section>
+		</article>
+	</div>
+	<button>开关</button>
+</body>
+</html>

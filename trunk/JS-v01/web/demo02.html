@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// function关键字用于声明自定义函数，其后跟函数签名
+	// 函数签名包括函数名称和小括号中的参数列表，参数列表中可以定义零到多个参数，多个参数以逗号（,）分隔
+	// 函数签名部分后的一对花括号定义了函数体，用于封装函数的运算逻辑，可以有零到多条语句
+	// 函数定义完成后不会自动执行，只有当被调用时才会执行其定义的逻辑
+	function helloWorld(){
+		document.writeln("Hello World!<br>");
+	}
+
+	// 调用自定义函数n次
+	helloWorld();
+	helloWorld();
+	helloWorld();
+	
+	// javascript对大小写敏感
+	// 因为函数名称是helloWorld，而调用时使用的是helloworld，所以会出现helloworld未定义的错误
+	// helloWorld、helloworld、HElloworld，JS认为是不同的标识符
+	// helloworld();
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button').on('click',function(){
+			var jsonData = {};
+			$.each($('#myform').serializeArray(),function(index,jsonObj){
+				jsonData[jsonObj.name]=jsonObj.value;
+			});
+			var jsonStr = JSON.stringify(jsonData);
+			$.ajax({
+				url:'user/save.do',
+				type:'POST',
+				contentType:'application/json',
+				dataType:'json',
+				data:jsonStr
+			}).then(function(msgVo){
+				alert(msgVo.msg);
+			},function(xhr){
+				alert(xhr.statusText);
+				alert(xhr.status);
+				$('body').html(xhr.responseText);
+			}).always(function(){
+				alert("请求已经发送");
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<form id="myform">
+		<input name="name" /><br>
+		<input name="tel" /><br>
+		<input name="birthday" type="date" /><br>
+		<button>Save</button>
+	</form>
+</body>
+</html>

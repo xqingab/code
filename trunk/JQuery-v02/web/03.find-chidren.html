@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#root').children('.special').css('font-size','2em');
+		$('#root').find('.special').css('color','#f00');
+	});
+</script>
+</head>
+<body>
+	<h2>find和children函数用于查找元素</h2>
+	<h2>find会一直沿着文档树的层次遍历所有后代元素</h2>
+	<h2>children只会在直接子元素一级进行查找</h2>
+	<ul id="root">
+		<li>1</li>
+		<li>2
+			<ul>
+				<li>2.1</li>
+				<li class="special">2.2</li>
+				<li>2.3</li>
+				<li>2.4</li>
+			</ul>
+		</li>
+		<li class="special">3</li>
+		<li>4</li>
+	</ul>
+</body>
+</html>

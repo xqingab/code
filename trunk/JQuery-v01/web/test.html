@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('h2').dblclick(function(){
+			$('h2').attr('contenteditable',true);
+		}).blur(function(){
+			$(this).attr('contenteditable',false);
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>这里是标题，双击一下试试</h2>
+	<div style="height: 500px;width: 400px;border: 2px solid blue">假装这里是张图片</div>
+</body>
+</html>

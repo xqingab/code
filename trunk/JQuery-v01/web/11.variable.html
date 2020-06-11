@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var testObj = {};
+		var testVar = 1;
+		var testFun = function(){alert(1);};
+		var testArr = [1,2,3,4,5];
+		
+		var result = [];
+		// 把JS的变量转换成JSON串
+		result.push('testObj = '+JSON.stringify(testObj));
+		result.push('testVar = '+JSON.stringify(testVar));
+		result.push('testFun = '+JSON.stringify(testFun.toString()));
+		result.push('testArr = '+JSON.stringify(testArr));
+		result.push('<br>');
+		
+		// 查看变量的类型
+		result.push('testObj type is: '+$.type(testObj));
+		result.push('testVar type is: '+$.type(testVar));
+		result.push('testFun type is: '+$.type(testFun));
+		result.push('testArr type is: '+$.type(testArr));
+		result.push('<br>');
+		
+		// 使用inArray函数返回某个值是否存在于一个数组中，如果存在返回元素的index，否则返回-1
+		result.push('inArray(3,testArray): '+$.inArray(3,testArr));
+		result.push('inArray(10,testArray): '+$.inArray(10,testArr));
+		result.push('<br>');
+		
+		// 使用isEmptyObject函数判断变量是否是空对象
+		result.push('isEmptyObject(testObj): '+$.isEmptyObject(testObj));
+		result.push('isEmptyObject({"name":"Tom"}): '+$.isEmptyObject({"name":"Tom"}));
+		result.push('<br>');
+		
+		// 使用isFunction函数判断变量是否是函数
+		result.push('isFunction(testFun): '+$.isFunction(testFun));
+		result.push('isFunction(testObj): '+$.isFunction(testObj));
+		result.push('<br>');
+		
+		// merge函数可以把两个数组的元素合并成一个数组
+		result.push('merge(testArr,[3,3,3,6,78]): '+JSON.stringify($.merge(testArr,[3,3,3,6,78])));
+		
+		// unique函数可以对一个数组中的元素进行排重操作
+		result.push('unique($.merge(testArr,[3,3,3,6,78])): '+JSON.stringify($.unique($.merge(testArr,[3,3,3,6,78]))));
+		
+		$('p').html(result.join('<br>'));
+	});
+</script>
+</head>
+<body>
+<p></p>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function validateForm() {
+		// trim()函数用于去除字符串前后的空白
+		var name = document.getElementById("username").value.trim();
+		var pwd = document.getElementById("pwd").value.trim();
+		var pwd2 = document.getElementById("pwd2").value.trim();
+		var tel = document.getElementById("tel").value.trim();
+		var email = document.getElementById("email").value.trim();
+		
+		if (name.length<5 || name.length>15) {
+			alert("用户名长度应该在5~15个字符");
+			return false;
+		}
+
+		if (pwd.length<6 || pwd.length>20) {
+			alert("密码长度应该在6~20个字符");
+			return false;
+		}
+
+		if (pwd != pwd2) {
+			alert("密码与确认密码不一致");
+			return false;
+		}
+
+		if (tel.length == 0) {
+			alert("请输入电话");
+			return false;
+		}
+		if (email.length == 0) {
+			alert("请输入邮箱");
+			return false;
+		}
+		
+		// indexOf()函数用于得到参数子串在字符串中的首次出现位置，如果没在大字符串中出现则返回-1
+		if(email.indexOf("@")==-1){
+			alert("请输入正确的Email格式");
+			return false;
+		}
+		
+		var genderArr = document.getElementsByName("gender");
+		var checkedFlag = false;
+		// var i = 0：声明了一个计数器，初始值设置为0
+		// i<genderArr.length：设置进入循环体的条件表达式，表达式返回true则进入循环体，返回false则跳出循环，执行后续部分的代码
+		// i++：计数器自增（i=i+1）
+		// for循环执行步骤：
+		// 第一步：执行var i=0;部分，进行计数器的初始化（在循环过程中只执行这一次）
+		// 第二步：运行i<genderArr.length部分的结果，如果返回true则进行循环体中，如果返回false则跳出循环，执行后续部分代码
+		// 第三步：如果循环体执行完毕一次，则转到i++部分，进行计数器的自增操作，然后再执行第二步
+		for(var i = 0; i<genderArr.length; i++){
+			if(genderArr[i].checked==true){
+				checkedFlag=true;
+				break;
+			}
+		}
+		if(!checkedFlag){
+			alert("请选择性别");
+			return false;
+		}
+		
+		var ahArr = document.getElementsByName("ah");
+		var ahCount = 0;
+		for(var i = 0; i<ahArr.length; i++){
+			if(ahArr[i].checked==true){
+				ahCount = ahCount + 1;
+			}
+		}
+		if(ahCount<2){
+			alert("请至少选择两项爱好");
+			return false;
+		}
+		
+		return true;
+	}
+</script>
+</head>
+<body>
+	<form action="regist.do" method="post"
+		onsubmit="return validateForm();">
+		<label>用户：</label><input id="username" name="username" /><br> 
+		<label>密码：</label><input id="pwd" name="pwd" type="password" /><br>
+		<label>确认：</label><input id="pwd2" name="pwd2" type="password" /><br>
+		<label>电话：</label><input id="tel" name="tel" /><br>
+		<label>邮箱：</label><input id="email" name="email" /><br>
+		<label>性别：</label><input type="radio" id="gm" name="gender" value="M" />男
+							<input type="radio" id="gf" name="gender" value="F" />女<br>
+		<label>爱好：</label>
+					<input type="checkbox" name="ah" value="1" />文学
+					<input type="checkbox" name="ah" value="2" />音乐
+					<input type="checkbox" name="ah" value="3" />电玩
+					<input type="checkbox" name="ah" value="4" />曲艺
+					<input type="checkbox" name="ah" value="5" />艺术<br>
+		<button>注册</button>
+	</form>
+</body>
+</html>

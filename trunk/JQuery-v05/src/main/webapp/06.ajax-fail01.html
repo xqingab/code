@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url:'user/getaOne.do',
+			dataType: 'json'
+		}).done(function(user){
+			$('#target').html("用户姓名："+user.name+"<br>用户的生日："+user.birthdayStr);
+		}).fail(function(jqXhr,status,errorMsg){
+			$('#target').empty();
+			// 服务器响应状态码
+			$('#target').append("jqXhr.status: "+jqXhr.status+"<br>")
+			// 服务器响应的消息文本
+			$('#target').append("jqXhr.statusText:"+jqXhr.statusText+"<br>");
+			// 服务器响应的报文正文
+			$('#target').append("jqXhr.responseText:"+jqXhr.responseText+"<br>");
+			// 如果服务器响应的数据如果是XML格式，，则此属性可以保存XML的内容
+			$('#target').append("jqXhr.responseXML:"+jqXhr.responseXML+"<br>");
+			// 服务器请求的进度状态
+			$('#target').append("jqXhr.readyStatus:"+jqXhr.readyStatus+"<br>");
+			// 服务器响应的报文头部
+			$('#target').append("jqXhr.getAllResponseHeaders():"+jqXhr.getAllResponseHeaders()+"<br>");
+			// 服务器响应的状态描述
+			$('#target').append("status:"+status+"<br>");
+			// 服务器响应的错误消息文本（Not Found）
+			$('#target').append("Error Msg:"+errorMsg+"<br>");
+		}).always(function(){
+			alert('请求已经发送');
+		});
+	});
+</script>
+</head>
+<body>
+<button>Get</button>
+<div id="target"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form id="myform" action="save.do" method="post"></form>
+	<select name="jg" form="myform">
+		<option value="">===请选择===</option>
+		<option value="1">北京</option>
+		<option value="2">天津</option>
+		<option value="3">上海</option>
+		<option value="4" selected="selected">重庆</option>
+		<option value="5">河北</option>
+		<option value="6">河南</option>
+	</select>
+	<br>
+	<input name="jg" list="jg-list" form="myform" />
+	<datalist id="jg-list">
+		<option>北京</option>
+		<option>天津</option>
+		<option>上海</option>
+		<option>重庆</option>
+		<option>河北</option>
+		<option>河南</option>
+	</datalist>
+	<br>
+	<label>文本框：</label><input id="xm" name="xm" type="text" value="张辽" placeholder="姓名" maxlength="8" form="myform" /><br>
+	<label>密码框：</label><input type="password" form="myform" /><br>
+	<label>性别：</label><input type="radio" name="gender" value="M" form="myform" />男<input type="radio" name="gender" value="F" form="myform" />女<input type="radio" name="gender" value="U" checked="checked" form="myform" />保密<br>
+	<label>爱好：</label>
+	<input type="checkbox" name="ah" value="1" form="myform" />文学
+	<input type="checkbox" name="ah" value="2" form="myform"/>旅行
+	<input type="checkbox" name="ah" value="3" form="myform"/>音乐
+	<input type="checkbox" name="ah" value="4" form="myform"/>睡觉
+	<br>
+	<button form="myform">Save</button>	
+</body>
+</html>

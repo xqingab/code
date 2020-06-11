@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>边框圆角</title>
+<style type="text/css">
+div {
+	width: 50em; /* 元素的宽度 */
+	height: 10em; /* 元素的高度 */
+	/* 统一设置元素的四条边框样式的简化形式 */
+	border: 2px solid black;
+	margin-bottom: 10px;
+}
+#d1{
+	/* 圆角半径的x和y都取相同的值 */
+	border-radius: 50px;
+}
+#d2{
+	/* 圆角半径的x和y取值不同：x/y */
+	border-radius: 50px/25px;
+}
+#d3{
+	/* 四个圆角半径都不同时按以下4个取值生成圆角，顺序是从左上角开始顺时针应用样式 */
+	border-radius: 100px 70px 30px 10px;
+}
+#d4{
+	/* 四个圆角xy半径都不同时按以下4个取值生成圆角，顺序是从左上角开始顺时针应用x轴样式/顺序是从左上角开始顺时针应用y轴样式 */
+	border-radius: 100px 70px 30px 10px/10px 30px 70px 100px;
+}
+
+#d5{
+	/* 圆角的对角简化形式 */
+	/* 第一个值：左上和右下;第二个值：右上和左下*/
+	border-radius: 100px 30px;
+}
+
+#d6{
+	width: 30em; /* 元素的宽度 */
+	height: 30em; /* 元素的高度 */
+	border-radius: 100%;
+}
+</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<div id="d2"></div>
+	<div id="d3"></div>
+	<div id="d4"></div>
+	<div id="d5"></div>
+	<div id="d6"></div>
+</body>
+</html>

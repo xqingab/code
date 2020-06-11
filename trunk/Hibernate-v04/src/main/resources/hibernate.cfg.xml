@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-configuration>
+	<session-factory>
+		<!-- 设置当Hibernate运行时生成的SQL语句是否显示到控制台上，一般在开发阶段设置为true，在生产环境中设置为false -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 指定当Hibernate运行前是否自动对实体类所映射的表进行生成或更改 -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- 设置使用什么数据库方言 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- JDBC连接参数 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url"><![CDATA[jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF8]]></property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">123456</property>
+		
+		<!-- 声明要被识别的实体类 -->
+		<mapping class="org.forten.sample.entity.Country" />
+		<mapping class="org.forten.sample.entity.General" />
+	</session-factory>
+</hibernate-configuration>

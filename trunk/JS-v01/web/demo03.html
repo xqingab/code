@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	  在函数签名的参数列表部分中加入了一个形式参数“xm”
+	  形式参数的作用是为调用此函数时真正传递进来的数据提供一个容器
+	  例如买饭：买的“食物”是比较抽象的概念，对应的是形式参数（函数定义时出现的）
+	  买“5个包子”是比较具体的概念，对象的是实际参数（函数被调用时出现的）
+	 */
+	function hello(xm) {
+		document.writeln("你好：" + xm + "!<br>");
+		// 如果函数没有返回值，解释器会自动加入以下空return语句，表示函数正常执行完成
+		return;
+	}
+	
+	function add(x,y){
+		document.writeln(x+"+"+y+"="+(x+y)+"<br>");
+	}
+
+	hello("张辽");
+	hello("曹操");
+	
+	add(1,1);
+	add(10498294,248923);
+</script>
+</head>
+<body>
+
+</body>
+</html>

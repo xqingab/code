@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div{
+		border: 1px solid black;
+	}
+	.d1{
+		width: 100px;
+		height: 100px;
+	}
+	.d2{
+		width: 200px;
+		height: 200px;
+	}
+	.d3{
+		width: 300px;
+		height: 300px;
+	}
+	.d4{
+		width: 400px;
+		height: 400px;
+	}
+	.d5{
+		width: 500px;
+		height: 500px;
+	}
+</style>
+<script type="text/javascript">
+	// 参数event是事件对象
+	function modifyBox(event){
+		// 通过事件对象的currentTarget属性（当前目标），得到触发此事件的那个元素对象
+		// event在本例中代表绑定到select元素上的onchange事件，currentTarget表示onchange事件的触发者（select元素）
+		var element = event.currentTarget;
+		// 得到触发此事件元素对象的value属性值
+		var cn = element.value;
+		// 修改div的class属性值
+		document.getElementById("d").className = cn;
+	}
+	// 以下语句放置的位置有错，会出现 Uncaught TypeError: Cannot set property 'onchange' of null
+	// 原因是在id是s的元素被加载之前就会使用它，而此时它还是null值
+	// document.getElementById("s").onchange = modifyBox;
+</script>
+</head>
+<body>
+	<div id="d" class="d1"></div>
+	<select id="s">
+		<option value="d1">100</option>
+		<option value="d2">200</option>
+		<option value="d3">300</option>
+		<option value="d4">400</option>
+		<option value="d5">500</option>
+	</select>
+	<script type="text/javascript">
+		// 得到文档中的select元素，为它的onchange属性（值改变事件）绑定modifyBox函数
+		// 为什么此语句要放在body元素在最后？原因是此语句会在加载时执行，
+		// 如果在执行时，select元素还没有被加载，则会出现问题，所以要在select元素必定加载后，再执行此语句
+		// 在本例中document.getElementById("s")表示select元素
+		// .onchange表示select元素的值变化事件
+		// 整条语句的含意是：把select元素的值变化事件作为modifyBox函数的参数，传递给它
+		document.getElementById("s").onchange = modifyBox;
+	</script>
+</body>
+</html>

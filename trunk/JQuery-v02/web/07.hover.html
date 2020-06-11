@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('div > div:contains("red")').hover(function(){
+			$(this).css({'background-color':'red','color':'black'});
+		},function(){
+			$(this).css({'background-color':'blue','color':'white'});
+		});
+	});
+</script>
+</head>
+<body>
+	<div>这是一段文字</div>
+	<div>
+		<div>这里的文字里包含了red，且在另一个div之中</div>
+	</div>
+	<div>这个div有red，但不在另一个div之中</div>
+</body>
+</html>

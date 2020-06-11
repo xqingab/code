@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>盒子阴影</title>
+<style type="text/css">
+	div{
+		width: 30em; /* 元素的宽度 */
+		height: 20em; /* 元素的高度 */
+		border: 2px solid black;
+		margin-bottom: 10em;
+	}
+	
+	#d1{
+		/*
+			阴影的水平偏移量：取正值向右偏移；取负值向左偏移
+			阴影的垂直偏移量：取正值向下偏移；取负值向上偏移
+			模糊量：默认0，越大越模糊
+			阴影的延伸半径：正值向各方向扩大；负值向反方向缩小
+			阴影的颜色
+			inset：如果有此设置，则阴影为内部阴影，否则为外部阴影
+		*/
+		box-shadow: 50px 40px 10px -20px #ccc;
+	}
+	
+	#d2{
+		/*
+			阴影的水平偏移量：取正值向右偏移；取负值向左偏移
+			阴影的垂直偏移量：取正值向下偏移；取负值向上偏移
+			模糊量：默认0，越大越模糊
+			阴影的延伸半径：正值向各方向扩大；负值向反方向缩小
+			阴影的颜色
+			inset：如果有此设置，则阴影为内部阴影，否则为外部阴影
+		*/
+		box-shadow: 50px 40px 10px -20px #ccc inset;
+	}
+	
+	#d3{
+		box-shadow: 3px 4px 3px 2px #ccc;
+	}
+</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<div id="d2"></div>
+	<div id="d3"></div>
+</body>
+</html>

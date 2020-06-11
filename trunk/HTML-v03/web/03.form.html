@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form id="myform" action="save.do" method="post" enctype="application/x-www-form-urlencoded">
+		<fieldset disabled="disabled">
+			<legend>基本信息</legend>
+			<label>文本框：</label><input id="xm" name="xm" type="text" value="张辽" placeholder="姓名" maxlength="8" /><br>
+			<label>密码框：</label><input type="password" /><br>
+			<label>性别：</label><input type="radio" name="gender" value="M" />男<input type="radio" name="gender" value="F" />女<input type="radio" name="gender" value="U" checked="checked" />保密<br>
+			<label>爱好：</label>
+			<input type="checkbox" name="ah" value="1"/>文学
+			<input type="checkbox" name="ah" value="2"/>旅行
+			<input type="checkbox" name="ah" value="3"/>音乐
+			<input type="checkbox" name="ah" value="4"/>睡觉
+		</fieldset>
+		<label>照片：</label><input type="file" name="photo" disabled="disabled" /><br>
+		<label>自我简介：</label><textarea rows="5" cols="60" placeholder="自我简介">这个人什么都没有写</textarea><br>
+		<input type="submit" value="提交" />
+		<input type="reset" value="重置" />
+		<input type="button" value="按钮" />
+		<br>
+		<button>提交</button>
+		<button type="reset">重置</button>
+		<button type="button">按钮</button>
+	</form>
+</body>
+</html>

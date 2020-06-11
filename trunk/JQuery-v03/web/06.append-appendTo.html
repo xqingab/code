@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#app-btn').click(function(){
+			$('#app').append("<p>test append()</p>");
+		});
+		$('#app-to-btn').click(function(){
+			$("<p>test appendTo()</p>").appendTo("#app-to");
+		});
+		$('#pre-btn').click(function(){
+			$('#app').prepend("<p>test prepend()</p>");
+		});
+		$('#pre-to-btn').click(function(){
+			$("<p>test prependTo()</p>").prependTo("#app-to");
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="app" style="border: 1px solid black;">
+		<p>在此行后追加。。。</p>
+	</div>
+	<button id="app-btn">append()</button><button id="pre-btn">prepend()</button>
+	<div id="app-to" style="border: 1px solid black;">
+		<p>在此行后追加。。。</p>
+	</div>
+	<button id="app-to-btn">appendTo()</button><button id="pre-to-btn">prependTo()</button>
+</body>
+</html>

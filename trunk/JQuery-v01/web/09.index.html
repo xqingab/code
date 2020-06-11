@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		alert("页面中一共存在"+$('p').length+"个p元素");
+		$('p').click(function(){
+			// index函数返回的是上下文中同级所有元素的索引号
+			alert("index is: "+$(this).index());
+		});
+	});
+</script>
+</head>
+<body>
+<h2>点p来查看它们的索引</h2>
+<p>1<span>这里是p中的span元素</span></p>
+<span>这里不是p元素</span>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+</body>
+</html>

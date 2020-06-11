@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function isEmptyValue(id,msg){
+		var ele = document.getElementById(id);
+		var value = ele.value.trim();
+		if(value.length==0){
+			alert(msg);
+			return true;
+		}
+		return false;
+	}
+	
+	function isInRange(id,name,min,max){
+		var value = document.getElementById(id).value.trim();
+		if(value.length>=min&&value.length<=max){
+			return true;
+		}else{
+			alert(name+"长度应该在"+min+"~"+max+"个字符之间");
+			return false;
+		}
+	}
+	
+	function validateForm(){
+		if(isEmptyValue("username", "请输入用户名")){
+			return false;
+		}
+		
+		if(!isInRange("username", "用户名", 5, 15)){
+			return false;
+		}
+		
+		if(isEmptyValue("pwd", "请输入密码")){
+			return false;
+		}
+		
+		if(!isInRange("pwd", "密码", 6, 16)){
+			return false;
+		}
+		return true;
+	}
+</script>
+</head>
+<body>
+	<!-- 当表单提交前会触发onsubmit事件，在事件中调用了validateForm()函数，如果函数返回的是true则进行提交，如果函数返回的是false则不提交 -->
+	<form id="login-form" action="login.do" method="post" onsubmit="return validateForm();">
+		<label>用户：</label><input id="username" name="username" /><br>
+		<label>密码：</label><input id="pwd" name="pwd" type="password" /><br>
+		<button>登录</button>
+	</form>
+</body>
+</html>

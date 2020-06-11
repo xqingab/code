@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button').click(function(){
+			var p = $('p');
+			alert('旧的元素文本是：'+p.text());
+			p.text('这里是替换后的<em>文本</em>');
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>点击以下按钮，替换当前页面中的内容</h2>
+	<p>这里的<strong>内容</strong>是<a href="http://www.w3.org/TR/html5">HTML</a>.</p>
+	<button>变</button>
+</body>
+</html>
