@@ -1,0 +1,74 @@
+﻿git 操作步骤：
+1、先安装好git软件
+2、再创建一个存放项目的文件夹。
+3、右键选择"Git Bash Here"。
+4、配置用户名和邮箱
+git bash here中输入
+git config --global user.name “汤健”
+git config --global username.email tangjian1.zh@ccbft.com
+
+5、在文件夹中执行下面命令，完成初始化。远程仓库创建别名：
+  git init
+  git remote add origin <你的项目地址> //注:项目地址形式为:https://gitee.com/xxx/xxx.git或者     git@gitee.com:xxx/xxx.git  
+  //git remote add origin https://github.com/sun766/Programming-art.git
+									   
+6、克隆项目：
+  git clone https://gitee.com/xxx/xxx.git						   
+  
+  
+  
+版本回退：
+git reset --hard commit_id
+
+$ git reset --hard HEAD^  回退上一个版本
+HEAD指向的版本就是当前版本
+
+git reflog：用来记录你的每一次命令
+用git log可以查看提交历史，以便确定要回退到哪个版本。
+要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。  
+（git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”）
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+
+生成git ssh key
+$ ssh-keygen -t rsa -C "xqingod@163.com"
+
+git config --global user.name "xqingab"
+git config --global username.email "xqingod@163"
+
+git init 初始化
+
+验证是否成功：
+ssh -T git@github.com
+
+本地库要关联一个远程库：
+git remote add origin git@github.com:xqingab/code.git
+
+可以允许不相关历史提，强制合并:
+$git pull origin master --allow-unrelated-histories
+
+git clone https://github.com/xqingab/code.git
+
+使用命令git push -u origin master第一次推送master分支的所有内容
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+git reset --hard origin/master
+
+
+如何恢复删除的代码？
+git fsck -lost-found
+
+通过.git/lost-found/other这个路径，你可以恢复任何你git add过的文件！
+
+再通过find .git/objects -type f | xargs ls -lt | sed 60q这个命令，你就可以找到最近被你add到本地仓库的60个文件
+
+// 放弃单个文件修改,注意不要忘记中间的"--",不写就成了检出分支了!
+git checkout -- filepathname
+// 放弃所有的文件修改
+git checkout .  
+
+
+https://www.cnblogs.com/liulaolaiu/archive/2012/08/08/11744888.html
+
